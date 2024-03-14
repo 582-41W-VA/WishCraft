@@ -1,0 +1,22 @@
+RFP (Request for Proposal)
+
+Introduction:
+Name: AraAra Projects
+Description: AraAra Studios specializes in creating visually appealing and user-friendly web applications.
+Project Background: AraAra Studios, founded by web enthusiasts in 2024, aims to bridge the gap between visually stunning websites and user-centric functionality. Recognizing the limitations of current Wishlist platforms, we propose "Wishcraft," a user-friendly solution to streamline online Wishlist creation and sharing.
+
+Objectives:
+
+Develop a user-friendly Wishlist website inspired by Pinterest.
+Measurable Goals:
+Create a web platform that allows users to create accounts, log in, and manage their Wishlist. Additionally, users should be able to view, comment and like Wishlist created by other users. The platform should provide a seamless and intuitive user experience, encouraging active engagement and interaction among users. The project should be completed within a 6-week timeframe, ensuring all core features are implemented and tested for usability and functionality.
+
+Scope of Work:
+Detailed Features:
+-	User registration and login.
+-	Secure user account management.
+-	Product browsing with search and filtering options.
+-	Ability to add items to Wishlist.
+-	Wishlist management with features like categorization
+-	Implement social functionalities like commenting other users’ posts/cards. 
+-	Responsive design for optimal viewing across different devices.
