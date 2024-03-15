@@ -17,11 +17,21 @@ The core functionalities will include:
 
 Stakeholders:
 Internal Team:
--	Maiko (Backend Manager)
+-	Maiko (Backend Manager/ General Assistant)
 -	Aleksandra (Backend Manager)
 -	Andre (Backend intern)
 -	Tischa (Frontend Manager)
 -	Andres (Project Manager/ Designer Manager)
+
+Design Brief:
+- Our target audience is gen z's
+
+Design Specifications:
+
+- Color Palette: Define a color scheme that aligns with the brand identity and resonates with the target audience.
+- Typography: Specify fonts for headings, body text, and buttons. Prioritize readability and visual hierarchy.
+- Imagery: Utilize high-quality visuals that are relevant to the platform's purpose and target audience.
+- Responsiveness: Ensure the homepage adapts seamlessly to different screen sizes (desktop, mobile, tablet).
 
 Client:
 -	AraAra studios
