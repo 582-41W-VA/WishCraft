@@ -7,7 +7,8 @@ Name of the Website:
 -	Wishcraft
 
 Project Summary:
-"Wishcraft" aims to develop a user-friendly online platform inspired by popular curation websites. This focuses on fostering a creative space for users to discover and collect interesting items they encounter online.
+"Wishcraft" aims to develop a user-friendly online platform inspired by popular curation websites. 
+This focuses on fostering a creative space for users to discover and collect interesting items they encounter online.
 
 The core functionalities will include:
 -	User accounts for personalized experiences.
@@ -16,7 +17,7 @@ The core functionalities will include:
 
 Stakeholders:
 Internal Team:
--	Maiko (Frontend/JavaScript manager/Project Manager Assistant)
+-	Maiko (Backend Manager)
 -	Aleksandra (Backend Manager)
 -	Andre (Backend intern)
 -	Tischa (Frontend Manager)
