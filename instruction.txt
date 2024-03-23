@@ -1,0 +1,25 @@
+- Create Virtual Environment
+- Activate the Virtual Environment
+- Install Django
+- Verify Installation
+- Creat a new project (wishcraft)
+- Create a new folder (app)
+- Create username for admin
+- Start the server
+
+- Change settings
+- Create models
+- Install pillow to add image processing capabilities
+(pip install pillow)
+- Make migration
+- Update migration
+
+
+Project structure:
+app/
+├── views/
+│   ├── __init__.py
+│   ├── addcard.py
+│   ├── editcard.py
+│   └── ...
+└── apps.py
