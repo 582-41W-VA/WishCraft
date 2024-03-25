@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 class Card(models.Model):
@@ -8,6 +9,7 @@ class Card(models.Model):
     likes = models.IntegerField(default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     tag = models.ManyToManyField("Tag")
+    date_created = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.title
