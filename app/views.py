@@ -5,7 +5,7 @@ from django.contrib import messages
 # Create your views here.
 
 def home(request):
-    return render(request, "app/home.html")
+    return render(request, "app/index.html")
 
 def create_user_if_not_exists(username, email, password, request):
     if User.objects.filter(username=username).exists():
