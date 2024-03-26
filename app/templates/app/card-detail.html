@@ -15,6 +15,13 @@
         {% endfor %}
     </ul>
 
+    {% if request.user == card_id.user %}
+        <div>
+            <a href="{% url 'edit_card' card_id.id %}">Edit</a>
+            <a href="{% url 'delete_card' card_id.id %}">Delete</a>
+        </div>
+    {% endif %}
+
     <h3>Comments</h3>
 
     <form method="POST" action="{% url 'add_comment' card_id=card_id.id %}">

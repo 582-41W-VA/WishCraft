@@ -62,7 +62,7 @@ def add_comment(request, card_id):
         return redirect('card_detail', card_id=card_id)
 
 
-def increment_likes(request, card_id):
+def increment_likes(card_id):
     card = get_object_or_404(Card, pk=card_id)
     card.likes += 1
     card.save()
@@ -104,3 +104,38 @@ def user_list(request):
         tags.update(card.tag.all())
     context = {"user_lists": user_lists,}
     return render(request, "app/user-list.html", context)
+
+
+def edit_card(request, card_id):
+    card = get_object_or_404(Card, pk=card_id)
+    tags = Tag.objects.all()
+    context = {
+        "card": card,
+        "tags": tags
+    }
+    if request.method == "POST":
+        new_tag_name = request.POST.get("new_tag", "")
+        tag_ids = request.POST.getlist("tags")
+        tags = Tag.objects.filter(id__in=tag_ids)
+        
+        if new_tag_name:
+            new_tag, _ = Tag.objects.get_or_create(name=new_tag_name)
+            tags = list(tags)
+            tags.append(new_tag)
+
+        card.title = request.POST.get("title", "")
+        image_file = request.FILES.get("image")
+        if image_file:
+            card.image = image_file
+        card.save()
+        card.tag.set(tags)
+
+        return redirect("user_list")
+    else:
+        return render(request, "app/edit-card.html", context)
+    
+    
+def delete_card(request, card_id):
+    card = get_object_or_404(Card, pk=card_id)
+    card.delete()
+    return redirect("user_list")

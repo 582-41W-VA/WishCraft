@@ -1,0 +1,26 @@
+<h1>Edit Card</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="title">
+        Title:
+        <input id="title" type="text" name="title" value="{{ card.title }}" required>
+    </label>
+    <label for="current_image">Current Image:
+        <img src="{{ card.image.url }}" alt="Current Image" width="150px">
+    </label>
+    <label for="image">
+        New Image:
+        <input id="image" type="file" name="image">
+    </label>
+    <label for="tagInput">
+        Tag:
+        <input id="tagInput" type="text" name="new_tag">
+    </label>
+    <label for="tagSelect">
+        {% for tag in tags %}
+            <input id="tagSelect" type="checkbox" name="tags" value="{{ tag.id }}" {% if tag in card.tag.all %}checked{% endif %}>{{ tag.name }}
+        {% endfor %}
+    </label>
+    <button type="submit">Save</button>
+</form>
