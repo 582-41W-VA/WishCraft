@@ -92,6 +92,7 @@ a{
 
 body {
   min-height: 100vh;
+  background-color: #e7e3f1;
 }
 
 ::-webkit-scrollbar {
