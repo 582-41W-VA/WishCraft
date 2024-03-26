@@ -17,10 +17,12 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from app import views
+from django.conf import settings
+from django.conf.urls.static import static
+from app.views.cards import home
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("app/", include("app.urls")),
-    path("", views.home, name="home"),
-]
+    path("", home, name="home"),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

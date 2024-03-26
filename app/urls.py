@@ -1,9 +1,15 @@
 from django.urls import path
-from . import views
+# from . import views
+from .views import authentication, cards
 
 urlpatterns = [
-    path("", views.home, name="home"),
-    path("register/", views.register, name="register"),
-    path("login/", views.login, name="login"),
-    path("logout/", views.logout, name="logout"),
+    path("", cards.home, name="home"),
+    path("register/", authentication.register, name="register"),
+    path("login/", authentication.login, name="login"),
+    path("logout/", authentication.logout, name="logout"),
+    path("card/<int:card_id>/", cards.card_detail, name="card_detail"),
+    path("card/<int:card_id>/add_comment/", cards.add_comment, name="add_comment"),
+    path("<int:card_id>/increment_likes/", cards.increment_likes, name="increment_likes"),
+    path("create_card/", cards.create_card, name="create_card"),
+    path("your_wish_list/", cards.user_list, name="user_list")
 ]
