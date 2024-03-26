@@ -11,7 +11,6 @@
 - Tischa
 
 
-
 ## Installation instruction:
 
 - Create Virtual Environment ```python -m venv .venv```
@@ -43,5 +42,11 @@ app/
 │   ├── authentication.py
 │   ├── cards.py
 │   └── ...
-└── apps.py
+└── urls.py
 ```
+
+## Entity-Relationship Diagram and DB schema
+- ERD
+![Image Description](images/ERD.jpg)
+- DB shema
+![Image Description](images/RelationalDB.jpg)
