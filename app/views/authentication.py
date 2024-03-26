@@ -2,12 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 
-# Create your views here.
-
-
-def home(request):
-    return render(request, "app/home.html")
-
 
 def create_user_if_not_exists(username, email, password, request):
     if User.objects.filter(username=username).exists():
@@ -53,7 +47,7 @@ def login(request):
             print("User logged in")
             if request.user.is_superuser:
                 return render(request, "app/admin.html")
-            return redirect("home")
+            return redirect("user_list")
         else:
             messages.error(request, "Invalid credentials")
             return redirect("login")
