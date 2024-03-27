@@ -4,6 +4,7 @@ from .views import authentication, cards
 
 urlpatterns = [
     path("", cards.home, name="home"),
+    path("landing/", authentication.landing_page, name="landing_page"),
     path("register/", authentication.register, name="register"),
     path("login/", authentication.login, name="login"),
     path("logout/", authentication.logout, name="logout"),

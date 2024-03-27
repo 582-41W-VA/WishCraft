@@ -55,7 +55,7 @@
             <article>
                 <h2>{{ selected_card.title }}</h2>
                 <a href="{% url 'card_detail' selected_card.id %}">
-                    <img src="{{ selected_card.image }}" alt="{{ selected_card.title }}" width="250px" />
+                    <img src="{{ selected_card.image.url }}" alt="{{ selected_card.title }}" width="250px" />
                 </a>
                 <p>{{ selected_card.user }}</p>
                 <span>{{ selected_card.likes }}</span>
