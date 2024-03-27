@@ -62,7 +62,7 @@ def add_comment(request, card_id):
         return redirect("card_detail", card_id=card_id)
 
 
-def increment_likes(card_id):
+def increment_likes(request, card_id):
     card = get_object_or_404(Card, pk=card_id)
     card.likes += 1
     card.save()
