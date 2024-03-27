@@ -1,12 +1,41 @@
+
+{%load static%}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>WishCraft</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+
+    <!-- JS -->
+    <script defer src="{% static 'js/landing.js' %}"></script>
 </head>
+
 <body>
-    <h1>Landing page</h1>
-    <a href="{% url 'login' %}">Log in</a>
+    <main>
+        <section class="overlay">
+            <div class="cta_login_register">
+                <h1>WishCraft</h1>
+                <p>Share your wishes with the world</p>
+                {% if request.user.is_authenticated %}
+                    <p>You are already logged in as {{ request.user.username }}</p>
+                    <a href="{% url 'logout' %}">Log out</a>
+                {% else %}
+                    <p>You are not logged in</p>
+                    <a id="register" href="{% url 'register' %}">Sign up</a>
+                    <a id="login" href="{% url 'login' %}">Log in</a>
+                {% endif %}
+            </div>
+        </section>
+        <section class="gallery_container">
+        </section>
+    </main>
+
 </body>
+
 </html>
+
