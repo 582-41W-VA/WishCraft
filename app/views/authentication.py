@@ -57,4 +57,9 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect("home")
+    return render(request, "app/index.html")
+
+def landing_page(request):
+    if request.user.is_authenticated:
+        return redirect("user_list")
+    return render(request, "app/index.html")
