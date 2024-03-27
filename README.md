@@ -21,7 +21,7 @@ For Windows: ```.venv\Scripts\activate```
 - Verify Installation
 ```python -m django --version```
 - Install pillow to add image processing capabilities
-```python3 -m pip install pillow```
+```pip install Pillow``` or ```python3 -m pip install pillow```
 - Make migration
 ```python manage.py makemigrations app```
 - Update migration
