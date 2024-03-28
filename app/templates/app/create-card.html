@@ -16,9 +16,9 @@
         Tag:
         <input id="tagInput" type="text" name="new_tag">
     </label>
-    <label for="tagSelect">
+    <label for="tagSelect{{ tag.id }}">
         {% for tag in tags %}
-            <input id="tagSelect" type="checkbox" name="tags" value="{{ tag.id }}">{{ tag.name }}
+            <input id="tagSelect{{ tag.id }}" type="checkbox" name="tags" value="{{ tag.id }}">{{ tag.name }}
         {% endfor %}
     </label>
     <button type="submit">Create</button>
