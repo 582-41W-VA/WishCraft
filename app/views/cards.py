@@ -1,42 +1,78 @@
+"""
+This module contains views for the home page, card detail page, adding comments, incrementing likes, creating cards, and user list page.
+"""
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from ..models import Card, Tag, Comment
 
 
-def home(request):
+def get_filtered_cards(request):
+    """
+    Helper function to filter cards based on selected tags, search query, and sort order.
+    Return:
+    - cards: QuerySet of filtered cards.
+    """
     cards = Card.objects.all().order_by("-date_created")
-    tags = Tag.objects.all()
     selected_tags = request.GET.getlist("tags")
-    selected_cards = cards
+    search_query = request.GET.get("search")
+    sort_by = request.GET.get("sort")
 
     if selected_tags:
-        selected_cards = cards.filter(tag__id__in=selected_tags)
+        cards = cards.filter(tag__id__in=selected_tags)
 
-    search_query = request.GET.get("search")
     if search_query:
-        selected_cards = cards.filter(title__icontains=search_query)
+        cards = cards.filter(title__icontains=search_query)
 
-    sort_by = request.GET.get("sort")
     if sort_by == "latest":
-        selected_cards = cards.order_by("-date_created")
+        cards = cards.order_by("-date_created")
     elif sort_by == "oldest":
-        selected_cards = cards.order_by("date_created")
+        cards = cards.order_by("date_created")
     elif sort_by == "likes":
-        selected_cards = cards.order_by("-likes")
+        cards = cards.order_by("-likes")
     elif sort_by == "alphabetical":
-        selected_cards = cards.order_by("title")
+        cards = cards.order_by("title")
+    return cards
+
+
+def home(request):
+    """
+    View for displaying the home page.
+    Displays all cards, tags, selected cards, selected tags, and sort order.
+    
+    Args:
+    - request: HttpRequest object.
+    
+    Return:
+    - HttpResponse object with the rendered home.html template.
+    """
+    tags = Tag.objects.all()
+    selected_cards = get_filtered_cards(request)
+    selected_tags = request.GET.getlist("tags")
+    sort_by = request.GET.get("sort")
 
     context = {
-        "cards": cards,
+        "selected_cards": selected_cards,
         "tags": tags,
         "selected_tags": selected_tags,
         "sort_by": sort_by,
-        "selected_cards": selected_cards,
     }
     return render(request, "app/home.html", context)
 
 
+
 def card_detail(request, card_id):
+    """
+    View for displaying the details of a card.
+    Displays the specified card, comments, and tags.
+    
+    Args:
+    - request: HttpRequest object.
+    - card_id: ID of the card to display.
+    
+    Return:
+    - HttpResponse object with the rendered card-detail.html template.
+    """
     card_id = get_object_or_404(Card, pk=card_id)
     comments = Comment.objects.filter(card=card_id).order_by("-id")
     tags = card_id.tag.all()
@@ -50,6 +86,17 @@ def card_detail(request, card_id):
 
 @login_required(login_url="/app/login/")
 def add_comment(request, card_id):
+    """
+    View for adding a comment to a card.
+    Adds a comment to the specified card.
+    
+    Args:
+    - request: HttpRequest object.
+    - card_id: ID of the card to add a comment to.
+    
+    Return:
+    - HttpResponseRedirect object that redirects to the card_detail view for the specified card.
+    """
     card = get_object_or_404(Card, pk=card_id)
     if request.method == "POST":
         content = request.POST.get("content")
@@ -63,6 +110,17 @@ def add_comment(request, card_id):
 
 
 def increment_likes(request, card_id):
+    """
+    View for incrementing the likes of a card.
+    Increments the likes of the specified card.
+    
+    Args:
+    - request: HttpRequest object.
+    - card_id: ID of the card to increment the likes of.
+    
+    Return:
+    - HttpResponseRedirect object that redirects to the card_detail view for the specified card.
+    """
     card = get_object_or_404(Card, pk=card_id)
     card.likes += 1
     card.save()
@@ -70,7 +128,17 @@ def increment_likes(request, card_id):
 
 
 @login_required(login_url="/app/login/")
-def create_card(request):    
+def create_card(request):
+    """
+    View for creating a card.
+    Creates a new card with the specified title, image, and tags.
+    
+    Args:
+    - request: HttpRequest object.
+    
+    Return:
+    - HttpResponseRedirect object that redirects to the user_list view.
+    """
     tags = Tag.objects.all()
     context = {"tags": tags}
     if request.method == "POST":
@@ -98,6 +166,16 @@ def create_card(request):
 
 @login_required(login_url="/app/login/")
 def user_list(request):
+    """
+    View for displaying the user's wish list.
+    Displays all cards created by the user.
+    
+    Args:
+    - request: HttpRequest object.
+    
+    Return:
+    - HttpResponse object with the rendered user-list.html template.
+    """
     user_lists = Card.objects.filter(user=request.user).order_by("-date_created")
     tags = set()
     for card in user_lists:
@@ -107,6 +185,17 @@ def user_list(request):
 
 
 def edit_card(request, card_id):
+    """
+    View for editing a card.
+    Edits the specified card with the new title, image, and tags.
+    
+    Args:
+    - request: HttpRequest object.
+    - card_id: ID of the card to edit.
+    
+    Return:
+    - HttpResponseRedirect object that redirects to the user_list view.
+    """
     card = get_object_or_404(Card, pk=card_id)
     tags = Tag.objects.all()
     context = {
@@ -136,6 +225,17 @@ def edit_card(request, card_id):
     
     
 def delete_card(request, card_id):
+    """
+    View for deleting a card.
+    Deletes the specified card.
+    
+    Args:
+    - request: HttpRequest object.
+    - card_id: ID of the card to delete.
+    
+    Return:
+    - HttpResponseRedirect object that redirects to the user_list view.
+    """
     card = get_object_or_404(Card, pk=card_id)
     card.delete()
     return redirect("user_list")

@@ -1,3 +1,12 @@
+"""
+This file contains the models for the app.
+
+Models:
+- Card: Model for storing card details.
+- Tag: Model for storing tag details.
+- Comment: Model for storing comment details.
+"""
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
