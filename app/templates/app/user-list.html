@@ -1,3 +1,9 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/user_list.css' %}">
+{% endblock %}
+{% block content %}
 <a href="{% url 'home' %}">Home</a>
 <a href="{% url 'create_card' %}">Create card</a>
 
@@ -22,3 +28,4 @@
         <p>No wishlist found</p>
     {% endif %}
 </section>
+{% endblock %}

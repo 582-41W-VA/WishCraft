@@ -1,3 +1,6 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block content %}
 <h1>Edit Card</h1>
 
 <form method="POST" enctype="multipart/form-data">
@@ -24,3 +27,4 @@
     {% endfor %}
     <button type="submit">Save</button>
 </form>
+{% endblock %}
