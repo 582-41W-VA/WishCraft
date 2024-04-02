@@ -14,7 +14,6 @@
 
 Wireframes, visual language guidelines, mockups are [HERE](https://www.figma.com/file/6IqDexekWDJsPdRIouBkYC/Wishcraft?type=design&node-id=0-1&mode=design&t=mrVceWbTknLxGIYi-0)
 
-
 ## Installation instruction:
 
 - Create Virtual Environment ```python -m venv .venv```
@@ -36,7 +35,6 @@ Note: if you are on mac you might need to use ```python3``` or ```pip3```
 ## Project architecture:
 
 We were following Django general architecture with separating views according its function in the logic (authentication.py - login, sign up, sign out, cards.py - all manipulations with cards data)
-
 
 ## Entity-Relationship Diagram and DB schema
 - ERD
