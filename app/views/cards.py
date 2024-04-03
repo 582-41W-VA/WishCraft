@@ -4,7 +4,7 @@ This module contains views for the home page, card detail page, adding comments,
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from ..models import Card, Tag, Comment
+from ..models import Card, Tag, Comment, Like
 
 
 def get_filtered_cards(request):
@@ -39,10 +39,10 @@ def home(request):
     """
     View for displaying the home page.
     Displays all cards, tags, selected cards, selected tags, and sort order.
-    
+
     Args:
     - request: HttpRequest object.
-    
+
     Return:
     - HttpResponse object with the rendered home.html template.
     """
@@ -60,26 +60,29 @@ def home(request):
     return render(request, "app/home.html", context)
 
 
-
 def card_detail(request, card_id):
     """
     View for displaying the details of a card.
     Displays the specified card, comments, and tags.
-    
+
     Args:
     - request: HttpRequest object.
     - card_id: ID of the card to display.
-    
+
     Return:
     - HttpResponse object with the rendered card-detail.html template.
     """
-    card_id = get_object_or_404(Card, pk=card_id)
-    comments = Comment.objects.filter(card=card_id).order_by("-id")
-    tags = card_id.tag.all()
+    card = get_object_or_404(Card, pk=card_id)
+    comments = Comment.objects.filter(card=card).order_by("-id")
+    tags = card.tag.all()
+    user = request.user
+    has_liked = Like.objects.filter(user=user, card=card).exists()
     context = {
-        "card_id": card_id,
+        "card": card,
         "comments": comments,
         "tags": tags,
+        "has_liked": has_liked,
+        "card_id": card_id,
     }
     return render(request, "app/card-detail.html", context)
 
@@ -89,22 +92,18 @@ def add_comment(request, card_id):
     """
     View for adding a comment to a card.
     Adds a comment to the specified card.
-    
+
     Args:
     - request: HttpRequest object.
     - card_id: ID of the card to add a comment to.
-    
+
     Return:
     - HttpResponseRedirect object that redirects to the card_detail view for the specified card.
     """
     card = get_object_or_404(Card, pk=card_id)
     if request.method == "POST":
         content = request.POST.get("content")
-        comment = Comment(
-            content=content,
-            user=request.user,
-            card=card
-        )
+        comment = Comment(content=content, user=request.user, card=card)
         comment.save()
         return redirect("card_detail", card_id=card_id)
 
@@ -113,17 +112,50 @@ def increment_likes(request, card_id):
     """
     View for incrementing the likes of a card.
     Increments the likes of the specified card.
-    
+
     Args:
     - request: HttpRequest object.
-    - card_id: ID of the card to increment the likes of.
-    
+    - card_id: ID of the card to increment likes for.
+
     Return:
     - HttpResponseRedirect object that redirects to the card_detail view for the specified card.
     """
     card = get_object_or_404(Card, pk=card_id)
-    card.likes += 1
+    user = request.user
+    has_liked = Like.objects.filter(user=user, card=card).exists()
+
+    if not has_liked:
+        card.likes += 1
+        card.save()
+        Like.objects.create(user=user, card=card)
+
+    return redirect("card_detail", card_id=card_id)
+
+
+def decrement_likes(request, card_id):
+    """
+    View for decrementing the likes of a card.
+    Decrements the likes of the specified card.
+
+    Args:
+    - request: HttpRequest object.
+    - card_id: ID of the card to decrement likes for.
+
+    Return:
+    - HttpResponseRedirect object that redirects to the card_detail view for the specified card.
+    """
+    card = Card.objects.get(pk=card_id)
+    user = request.user
+
+    has_liked = Like.objects.filter(user=user, card=card).exists()
+
+    if not has_liked:
+        return redirect("card_detail", card_id=card_id)
+
+    card.likes -= 1
     card.save()
+    Like.objects.filter(user=user, card=card).delete()
+
     return redirect("card_detail", card_id=card_id)
 
 
@@ -132,10 +164,10 @@ def create_card(request):
     """
     View for creating a card.
     Creates a new card with the specified title, image, and tags.
-    
+
     Args:
     - request: HttpRequest object.
-    
+
     Return:
     - HttpResponseRedirect object that redirects to the user_list view.
     """
@@ -145,7 +177,7 @@ def create_card(request):
         new_tag_name = request.POST.get("new_tag", "")
         tag_ids = request.POST.getlist("tags")
         tags = Tag.objects.filter(id__in=tag_ids)
-        
+
         if new_tag_name:
             new_tag, _ = Tag.objects.get_or_create(name=new_tag_name)
             tags = list(tags)
@@ -169,10 +201,10 @@ def user_list(request):
     """
     View for displaying the user's wish list.
     Displays all cards created by the user.
-    
+
     Args:
     - request: HttpRequest object.
-    
+
     Return:
     - HttpResponse object with the rendered user-list.html template.
     """
@@ -180,7 +212,9 @@ def user_list(request):
     tags = set()
     for card in user_lists:
         tags.update(card.tag.all())
-    context = {"user_lists": user_lists,}
+    context = {
+        "user_lists": user_lists,
+    }
     return render(request, "app/user-list.html", context)
 
 
@@ -188,25 +222,22 @@ def edit_card(request, card_id):
     """
     View for editing a card.
     Edits the specified card with the new title, image, and tags.
-    
+
     Args:
     - request: HttpRequest object.
     - card_id: ID of the card to edit.
-    
+
     Return:
     - HttpResponseRedirect object that redirects to the user_list view.
     """
     card = get_object_or_404(Card, pk=card_id)
     tags = Tag.objects.all()
-    context = {
-        "card": card,
-        "tags": tags
-    }
+    context = {"card": card, "tags": tags}
     if request.method == "POST":
         new_tag_name = request.POST.get("new_tag", "")
         tag_ids = request.POST.getlist("tags")
         tags = Tag.objects.filter(id__in=tag_ids)
-        
+
         if new_tag_name:
             new_tag, _ = Tag.objects.get_or_create(name=new_tag_name)
             tags = list(tags)
@@ -222,17 +253,17 @@ def edit_card(request, card_id):
         return redirect("user_list")
     else:
         return render(request, "app/edit-card.html", context)
-    
-    
+
+
 def delete_card(request, card_id):
     """
     View for deleting a card.
     Deletes the specified card.
-    
+
     Args:
     - request: HttpRequest object.
     - card_id: ID of the card to delete.
-    
+
     Return:
     - HttpResponseRedirect object that redirects to the user_list view.
     """

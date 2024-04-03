@@ -3,6 +3,9 @@
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
+{% block js %}
+    <script defer src="{% static 'js/script.js' %}"></script>
+{% endblock %}
 {% block content %}
     <h1>Sign in - sign up</h1>
 
@@ -26,7 +29,7 @@
         <button type="submit">Search</button>
     </form>
     
-    <form method="GET">
+    <form method="GET" id="sortForm">
         {% csrf_token %}
         <label for="sort">Sort by:</label>
         <select id="sort" name="sort">
@@ -35,17 +38,15 @@
             <option value="likes" {% if sort_by == 'likes' %}selected{% endif %}>Popularity</option>
             <option value="alphabetical" {% if sort_by == 'alphabetical' %}selected{% endif %}>Alphabetical</option>
         </select>
-        <button type="submit">Sort</button>
     </form>
     
-    <form method="GET">
+    <form method="GET" id="filterForm">
         {% csrf_token %}
         <label>Filter by tag:</label>
         {% for tag in tags %}
             <input for="tagSelect{{ tag.id }}" type="checkbox" name="tags" value="{{ tag.id }}" {% if tag.id|stringformat:"s" in selected_tags %}checked{% endif %}>
             <label for="tagSelect{{ tag.id }}">{{ tag.name }}</label>
         {% endfor %}
-        <button type="submit">Apply Filter</button>
     </form>
 
     {% if selected_cards %}

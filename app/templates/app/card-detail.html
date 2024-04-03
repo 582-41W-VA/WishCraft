@@ -5,29 +5,36 @@
 <a href="{% url 'user_list' %}">Your wishlist</a>
 
 <section>
-    <h2>{{ card_id.title }}</h2>
-    <img src="{{ card_id.image.url }}" alt="{{ card_id.title }}" width="500px" />
-    <p>{{ card_id.user }}</p>
-    <span>{{ card_id.likes }}</span>
-    {% if request.user != card_id.user %}
-        <a href="{% url 'increment_likes' card_id.id %}">Like</a>
+    <h2>{{ card.title }}</h2>
+    <img src="{{ card.image.url }}" alt="{{ card.title }}" width="500px" />
+    <p>{{ card.user }}</p>
+    <span>{{ card.likes }}</span>
+    {% if request.user != card.user %}
+        {% if not has_liked %}
+            <a href="{% url 'increment_likes' card_id=card.id %}">Like</a>
+        {% endif %}
+        {% if has_liked %}
+            <a href="{% url 'decrement_likes' card_id=card.id %}">Dislike</a>
+        {% endif %}
     {% endif %}
+
+
     <ul>
         {% for tag in tags %}
         <li>{{ tag.name }}</li>
         {% endfor %}
     </ul>
 
-    {% if request.user == card_id.user %}
+    {% if request.user == card.user %}
         <div>
-            <a href="{% url 'edit_card' card_id.id %}">Edit</a>
-            <a href="{% url 'delete_card' card_id.id %}">Delete</a>
+            <a href="{% url 'edit_card' card.id %}">Edit</a>
+            <a href="{% url 'delete_card' card.id %}">Delete</a>
         </div>
     {% endif %}
 
     <h3>Comments</h3>
 
-    <form method="POST" action="{% url 'add_comment' card_id=card_id.id %}">
+    <form method="POST" action="{% url 'add_comment' card_id=card.id %}">
         {% csrf_token %}
         <label for="content">Comment:
             <textarea name="content" required></textarea>
