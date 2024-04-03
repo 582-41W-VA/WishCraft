@@ -12,6 +12,9 @@ urlpatterns = [
     path(
         "<int:card_id>/increment_likes/", cards.increment_likes, name="increment_likes"
     ),
+    path(
+        "<int:card_id>/decrement_likes/", cards.decrement_likes, name="decrement_likes"
+    ),
     path("create_card/", cards.create_card, name="create_card"),
     path("your_wish_list/", cards.user_list, name="user_list"),
     path("edit_card/<int:card_id>/", cards.edit_card, name="edit_card"),
