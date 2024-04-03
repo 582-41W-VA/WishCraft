@@ -1,10 +1,14 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WishCraft</title>
+    <!-- cdn -->
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- DEFAULT CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <!-- CSS -->
@@ -12,10 +16,12 @@
     <!-- JS -->
     {% block js %}{% endblock %}
 </head>
+
 <body>
     <main>
         {% block content %}{% endblock %}
     </main>
-    <footer></footer>
+    {% block script %}{% endblock %}
 </body>
+
 </html>
