@@ -1,5 +1,4 @@
 from django.urls import path
-# from . import views
 from .views import authentication, cards
 
 urlpatterns = [
@@ -10,7 +9,9 @@ urlpatterns = [
     path("logout/", authentication.logout, name="logout"),
     path("card/<int:card_id>/", cards.card_detail, name="card_detail"),
     path("card/<int:card_id>/add_comment/", cards.add_comment, name="add_comment"),
-    path("<int:card_id>/increment_likes/", cards.increment_likes, name="increment_likes"),
+    path(
+        "<int:card_id>/increment_likes/", cards.increment_likes, name="increment_likes"
+    ),
     path("create_card/", cards.create_card, name="create_card"),
     path("your_wish_list/", cards.user_list, name="user_list"),
     path("edit_card/<int:card_id>/", cards.edit_card, name="edit_card"),

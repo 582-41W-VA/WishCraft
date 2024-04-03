@@ -1,3 +1,6 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block content %}
 <h1>Edit Card</h1>
 
 <form method="POST" enctype="multipart/form-data">
@@ -17,10 +20,11 @@
         Tag:
         <input id="tagInput" type="text" name="new_tag">
     </label>
-    <label for="tagSelect{{ tag.id }}">
-        {% for tag in tags %}
+    {% for tag in tags %}
+        <label for="tagSelect{{ tag.id }}">
             <input id="tagSelect{{ tag.id }}" type="checkbox" name="tags" value="{{ tag.id }}" {% if tag in card.tag.all %}checked{% endif %}>{{ tag.name }}
-        {% endfor %}
-    </label>
+        </label>
+    {% endfor %}
     <button type="submit">Save</button>
 </form>
+{% endblock %}

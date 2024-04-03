@@ -19,7 +19,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from app.views.cards import home
 from app.views.authentication import landing_page
 
 urlpatterns = [

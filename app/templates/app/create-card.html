@@ -1,3 +1,6 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block content %}
 <h1>Create Wish List</h1>
 <a href="{% url 'home' %}">Home</a>
 <a href="{% url 'user_list' %}">Your wishlist</a>
@@ -16,10 +19,11 @@
         Tag:
         <input id="tagInput" type="text" name="new_tag">
     </label>
-    <label for="tagSelect{{ tag.id }}">
-        {% for tag in tags %}
+    {% for tag in tags %}
+        <label for="tagSelect{{ tag.id }}">
             <input id="tagSelect{{ tag.id }}" type="checkbox" name="tags" value="{{ tag.id }}">{{ tag.name }}
-        {% endfor %}
-    </label>
+        </label>
+    {% endfor %}
     <button type="submit">Create</button>
 </form>
+{% endblock %}

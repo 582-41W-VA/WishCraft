@@ -1,3 +1,12 @@
+"""
+This file contains the models for the app.
+
+Models:
+- Card: Model for storing card details.
+- Tag: Model for storing tag details.
+- Comment: Model for storing comment details.
+"""
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -15,8 +24,22 @@ class Card(models.Model):
         return self.title
 
 
+DEFAULT_TAGS = [
+    ("fashion", "Fashion"),
+    ("home decor", "Home Decor"),
+    ("food & recipe", "Food & Recipe"),
+    ("travel", "Travel"),
+    ("art & design", "Art & Design"),
+    ("photography", "Photography"),
+    ("diy & craft", "DIY & Craft"),
+    ("health & fitness", "Health & Fitness"),
+    ("tech", "Tech"),
+    ("books & literature", "Books & Literature"),
+]
+
+
 class Tag(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, choices=DEFAULT_TAGS)
 
     def __str__(self):
         return self.name

@@ -1,3 +1,6 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block content %}
 <a href="{% url 'home' %}">Home</a>
 <a href="{% url 'user_list' %}">Your wishlist</a>
 
@@ -45,3 +48,4 @@
         </ul>
     </article>
 </section>
+{% endblock %}
