@@ -59,7 +59,7 @@ function generateMasonryGrid(columns, posts) {
 let previousScreenSize = window.innerWidth;
 
 window.addEventListener("resize", () => {
-  imageIndex = 0;
+  let imageIndex = 0;
   if (window.innerWidth < 600 && previousScreenSize >= 600) {
     generateMasonryGrid(1, posts);
   } else if (

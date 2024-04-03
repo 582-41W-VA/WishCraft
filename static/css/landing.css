@@ -8,7 +8,7 @@
 html,
 body {
   width: 100vw;
-  overflow: auto;
+  overflow: hidden;
   background: #0f0f0f;
   color: #fff;
 }
@@ -17,13 +17,7 @@ body {
   display: none;
 }
 
-header {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-}
+
 
 h1 {
   font-size: 3rem;
@@ -62,6 +56,14 @@ main {
   width: 100%;
   height: 100%;
   overflow: scroll;
+}
+
+.hero {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
 .container {
