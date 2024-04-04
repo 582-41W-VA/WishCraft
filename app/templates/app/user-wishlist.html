@@ -4,8 +4,6 @@
     <link rel="stylesheet" href="{% static 'css/user_wishlist.css' %}">
 {% endblock %}
 {% block content %}
-<a href="{% url 'home' %}">Home</a>
-<a href="{% url 'create_card' %}">Create card</a>
 
 <section>
     <h1>{{ request.user.username }}'s wishlist</h1>

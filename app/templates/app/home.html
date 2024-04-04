@@ -1,72 +1,57 @@
 {% extends "app/base.html" %}
 {% load static %}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 {% block js %}
-    <script defer src="{% static 'js/script.js' %}"></script>
+<script defer src="{% static 'js/script.js' %}"></script>
 {% endblock %}
 {% block content %}
-    <h1>Sign in - sign up</h1>
 
-    {% if request.user.is_authenticated %}
-    <p>You are already logged in as {{ request.user.username }}</p>
-    <a href="{% url 'logout' %}">Log out</a>
-    {% else %}
-    <p>You are not logged in</p>
-    <a href="{% url 'register' %}">Sign up</a>
-    <a href="{% url 'login' %}">Log in</a>
-    {% endif %}
 
-    <h1>Start wishing</h1>
-    <a href="{% url 'user_wishlist' %}">Your wishlist</a>
-    <a href="{% url 'create_card' %}">Create card</a>
+<h1>Start wishing</h1>
+<!-- <a href="{% url 'user_list' %}">Your wishlist</a> -->
+<!-- <a href="{% url 'create_card' %}">Create card</a> -->
 
-    <form method="GET">
-        {% csrf_token %}
-        <label for="search">Search:</label>
-        <input type="text" id="search" name="search" value="{{ request.GET.search }}">
-        <button type="submit">Search</button>
-    </form>
-    
-    <form method="GET" id="sortForm">
-        {% csrf_token %}
-        <label for="sort">Sort by:</label>
-        <select id="sort" name="sort">
-            <option value="latest" {% if sort_by == 'latest' %}selected{% endif %}>Latest</option>
-            <option value="oldest" {% if sort_by == 'oldest' %}selected{% endif %}>Oldest</option>
-            <option value="likes" {% if sort_by == 'likes' %}selected{% endif %}>Popularity</option>
-            <option value="alphabetical" {% if sort_by == 'alphabetical' %}selected{% endif %}>Alphabetical</option>
-        </select>
-    </form>
-    
-    <form method="GET" id="filterForm">
-        {% csrf_token %}
-        <label>Filter by tag:</label>
-        {% for tag in tags %}
-            <input for="tagSelect{{ tag.id }}" type="checkbox" name="tags" value="{{ tag.id }}" {% if tag.id|stringformat:"s" in selected_tags %}checked{% endif %}>
-            <label for="tagSelect{{ tag.id }}">{{ tag.name }}</label>
+<form method="GET" id="sortForm">
+    {% csrf_token %}
+    <label class="sr-only" for="sort">Sort by:</label>
+    <select id="sort" name="sort">
+        <option value="latest" {% if sort_by == 'latest' %}selected{% endif %}>Latest</option>
+        <option value="oldest" {% if sort_by == 'oldest' %}selected{% endif %}>Oldest</option>
+        <option value="likes" {% if sort_by == 'likes' %}selected{% endif %}>Popularity</option>
+        <option value="alphabetical" {% if sort_by == 'alphabetical' %}selected{% endif %}>Alphabetical</option>
+    </select>
+</form>
+
+
+<form method="GET" id="filterForm">
+    {% csrf_token %}
+    <label class="sr-only">Filter by tag:</label>
+    {% for tag in tags %}
+    <input class="hidden-checkbox" id="tagSelect{{ tag.id }}" type="checkbox" name="tags" value="{{ tag.id }}" {% if tag.id|stringformat:"s" in selected_tags %}checked{% endif %} >
+    <label class="styled-label" for="tagSelect{{ tag.id }}">{{ tag.name }}</label>
+    {% endfor %}
+    <button type="button" id="clearTagsBtn">Clear All Tags</button>
+</form>
+
+{% if selected_cards %}
+{% for selected_card in selected_cards %}
+<article>
+    <h2>{{ selected_card.title }}</h2>
+    <a href="{% url 'card_detail' selected_card.id %}">
+        <img src="{{ selected_card.image.url }}" alt="{{ selected_card.title }}" width="250px" />
+    </a>
+    <p>{{ selected_card.user }}</p>
+    <span>{{ selected_card.likes }}</span>
+    <ul>
+        {% for tag in selected_card.tag.all %}
+        <li>{{ tag.name }}</li>
         {% endfor %}
-        <button type="button" id="clearTagsBtn">Clear All Tags</button>
-    </form>
-
-    {% if selected_cards %}
-        {% for selected_card in selected_cards %}
-            <article>
-                <h2>{{ selected_card.title }}</h2>
-                <a href="{% url 'card_detail' selected_card.id %}">
-                    <img src="{{ selected_card.image.url }}" alt="{{ selected_card.title }}" width="250px" />
-                </a>
-                <p>{{ selected_card.user }}</p>
-                <span>{{ selected_card.likes }}</span>
-                <ul>
-                    {% for tag in selected_card.tag.all %}
-                    <li>{{ tag.name }}</li>
-                    {% endfor %}
-                </ul>
-            </article>
-        {% endfor %}
-        {% else %}
-        <p>No item found</p>
-    {% endif %}
+    </ul>
+</article>
+{% endfor %}
+{% else %}
+<p>No item found</p>
+{% endif %}
 {% endblock %}
