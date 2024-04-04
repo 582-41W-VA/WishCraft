@@ -1,14 +1,15 @@
 {% extends "app/base.html" %}
 {% load static %}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+<link rel="stylesheet" href="{% static 'css/landing.css' %}">
 {% endblock %}
 {% block js %}
-    <script defer src="{% static 'js/landing.js' %}"></script>
-    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<!-- <script defer src="{% static 'js/landing.js' %}"></script> -->
+<!-- gsap -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 {% endblock %}
 {% block content %}
-    <section class="overlay">
+<!-- <section class="overlay">
         <div class="cta_login_register">
             <h1>WishCraft</h1>
             <p>Share your wishes with the world</p>
@@ -23,5 +24,92 @@
         </div>
     </section>
     <section class="gallery_container">
+    </section> -->
+
+<main>
+    <section
+        class="hero">
+        <h1>Start wishing today</h1>
+        <p>Share your wishes with the world</p>
+        <div class="sign_in_container">
+            {% if request.user.is_authenticated %}
+            <p>You are already logged in as {{ request.user.username }}</p>
+            <a href="{% url 'logout' %}">Log out</a>
+            {% else %}
+            <!-- <p>You are not logged in</p> -->
+            <!-- <button><a id="register" href="{% url 'register' %}">Sign up</a></button> -->
+            <!-- <button><a id="login" href="{% url 'login' %}">Log in</a></button> -->
+            {% endif %}
+        </div>
     </section>
+    <section class="gallery"></section>
+
+    <section class="container">
+    </section>
+
+</main>
 {% endblock %}
+{% block script %}
+<script type="module">
+    import { items } from "{% static 'js/items.js' %}";
+
+    const gallery = document.querySelector(".gallery");
+
+    const itemPositions = [
+        { top: "-5%", left: "5%" },//image 1
+        { top: "40%", left: "-5%" },//image 2
+        { top: "20%", left: "28%" },//image 3
+        { top: "60%", left: "40%" },//image 4
+        { top: "65%", left: "10%" },//image 5
+        { top: "-10%", left: "60%" },//image 6
+        { top: "10%", left: "85%" },//image 7
+        { top: "35%", left: "58%" },//image 8
+        { top: "68%", left: "74%" },//image 9
+        { top: "50%", left: "90%" },//image 10
+    ];
+
+    items.forEach((itemData, index) => {
+        const item = document.createElement("div");
+        item.classList.add("item");
+
+        const position = itemPositions[index];
+        item.style.top = position.top;
+        item.style.left = position.left;
+
+        const img = document.createElement("img");
+        img.src = itemData.img;
+        item.appendChild(img);
+
+        gallery.appendChild(item);
+    });
+
+
+    let animate = false;
+    gallery.addEventListener('mouseenter', () => {
+        animate = true;
+    });
+
+    gallery.addEventListener('mouseleave', () => {
+        animate = false;
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (animate) {
+            gallery.querySelectorAll('.item').forEach((item, index) => {
+                const animationFactor = items[index].parllaxSpeed;
+
+                const deltaX = (e.clientX - window.innerWidth / 2) * animationFactor;
+                const deltaY = (e.clientY - window.innerHeight / 2) * animationFactor;
+
+                gsap.to(item, { x: deltaX, y: deltaY, duration: 0.75 });
+            });
+        }
+    });
+
+</script>
+
+<script src="{% static 'js/scroll_items.js' %}"></script> <!-- the scroll script needs to load before the app -->
+
+<script type="module" src="{% static 'js/app.js' %}"></script>
+{% endblock %}
+

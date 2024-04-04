@@ -1,10 +1,17 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WishCraft</title>
+    <!-- cdn -->
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Epilogue:300,regular,500,600,700,800,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Sansita:regular,italic,700,800,900" rel="stylesheet" />
     <!-- DEFAULT CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <!-- CSS -->
@@ -12,10 +19,33 @@
     <!-- JS -->
     {% block js %}{% endblock %}
 </head>
+
 <body>
+    <header>
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'create_card' %}">Create card</a>
+            <a href="{% url 'user_list' %}">Your wishlist</a>
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'logout' %}">Log out</a>
+            {% else %}
+            <a href="{% url 'register' %}">Sign up</a>
+            <a href="{% url 'login' %}">Log in</a>
+            {% endif %}
+        </nav>
+        <form method="GET">
+            {% csrf_token %}
+            <label for="search" class="sr-only">Search:</label>
+            <div class="search-container">
+                <input type="text" id="search" name="search" value="{{ request.GET.search }}" placeholder="Search">
+                <button type="submit"><i class="fa fa-search search-icon"></i></button>
+            </div>
+        </form>
+    </header>
     <main>
         {% block content %}{% endblock %}
     </main>
-    <footer></footer>
+    {% block script %}{% endblock %}
 </body>
+
 </html>
