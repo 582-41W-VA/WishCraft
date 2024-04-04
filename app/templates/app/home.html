@@ -47,6 +47,7 @@
             <input for="tagSelect{{ tag.id }}" type="checkbox" name="tags" value="{{ tag.id }}" {% if tag.id|stringformat:"s" in selected_tags %}checked{% endif %}>
             <label for="tagSelect{{ tag.id }}">{{ tag.name }}</label>
         {% endfor %}
+        <button type="button" id="clearTagsBtn">Clear All Tags</button>
     </form>
 
     {% if selected_cards %}
