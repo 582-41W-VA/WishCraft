@@ -35,7 +35,8 @@
         </nav>
         <form method="GET">
             {% csrf_token %}
-            <label for="search" class="sr-only">Search:</label>            <div class="search-container">
+            <label for="search" class="sr-only">Search:</label>
+            <div class="search-container">
                 <input type="text" id="search" name="search" value="{{ request.GET.search }}" placeholder="Search">
                 <button type="submit"><i class="fa fa-search search-icon"></i></button>
             </div>

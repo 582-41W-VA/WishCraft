@@ -1,0 +1,21 @@
+.hidden-checkbox {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.styled-label {
+    display: inline-block;
+    padding: 10px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.hidden-checkbox:checked + .styled-label {
+    background-color: #c0c0c0;
+}
