@@ -85,7 +85,7 @@ def login(request):
             print("User logged in")
             if request.user.is_superuser:
                 return render(request, "app/admin.html")
-            return redirect("user_list")
+            return redirect("user_wishlist")
         else:
             messages.error(request, "Invalid credentials")
             return redirect("login")
@@ -120,5 +120,5 @@ def landing_page(request):
     - HttpResponse: Rendered HTML page.
     """
     if request.user.is_authenticated:
-        return redirect("user_list")
+        return redirect("user_wishlist")
     return render(request, "app/index.html")

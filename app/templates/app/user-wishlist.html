@@ -1,7 +1,7 @@
 {% extends "app/base.html" %}
 {% load static %}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/user_list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/user_wishlist.css' %}">
 {% endblock %}
 {% block content %}
 <a href="{% url 'home' %}">Home</a>
@@ -9,16 +9,16 @@
 
 <section>
     <h1>{{ request.user.username }}'s wishlist</h1>
-    {% if user_lists %}
-        {% for user_list in user_lists %}
+    {% if user_wishlists %}
+        {% for user_wishlist in user_wishlists %}
             <article>
-                <h2>{{ user_list.title }}</h2>
-                <a href="{% url 'card_detail' user_list.id %}">
-                    <img src="{{ user_list.image.url }}" alt="{{ user_list.title }}" width="250px" />
+                <h2>{{ user_wishlist.title }}</h2>
+                <a href="{% url 'card_detail' user_wishlist.id %}">
+                    <img src="{{ user_wishlist.image.url }}" alt="{{ user_wishlist.title }}" width="250px" />
                 </a>
-                <p>{{ user_list.likes }}</p>
+                <p>{{ user_wishlist.likes }}</p>
                 <ul>
-                    {% for tag in user_list.tag.all %}
+                    {% for tag in user_wishlist.tag.all %}
                     <li>{{ tag.name }}</li>
                     {% endfor %}
                 </ul>

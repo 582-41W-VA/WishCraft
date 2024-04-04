@@ -16,7 +16,7 @@ urlpatterns = [
         "<int:card_id>/decrement_likes/", cards.decrement_likes, name="decrement_likes"
     ),
     path("create_card/", cards.create_card, name="create_card"),
-    path("your_wish_list/", cards.user_list, name="user_list"),
+    path("your_wish_list/", cards.user_wishlist, name="user_wishlist"),
     path("edit_card/<int:card_id>/", cards.edit_card, name="edit_card"),
     path("delete_card/<int:card_id>/", cards.delete_card, name="delete_card"),
 ]
