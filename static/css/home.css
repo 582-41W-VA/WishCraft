@@ -22,3 +22,11 @@
     background-color: #c0c0c0;
 }
 
+#clearTagsBtn {
+    background-color: var(--button_color_dark);
+    color: var(--para_color_dark);
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--br-7);
+    cursor: pointer;
+}
