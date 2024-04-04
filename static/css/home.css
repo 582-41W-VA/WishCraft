@@ -12,8 +12,10 @@
 .styled-label {
     display: inline-block;
     padding: 10px;
-    background-color: #f0f0f0;
+    background: var(--button_color_light);
+    color: var(--para_color_dark);
     cursor: pointer;
+    border-radius: var(--br-7);
 }
 
 .hidden-checkbox:checked + .styled-label {
