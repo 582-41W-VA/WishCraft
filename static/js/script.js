@@ -11,4 +11,13 @@ document.addEventListener("DOMContentLoaded", function() {
             filterForm.submit();
         });
     });
+
+    const clearTagsBtn = document.getElementById("clearTagsBtn");
+    clearTagsBtn.addEventListener("click", function() {
+        let checkboxes = document.querySelectorAll("input[type='checkbox'][name='tags']");
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = false;
+        });
+        filterForm.submit();
+    });
 });
