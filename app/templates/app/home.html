@@ -8,13 +8,14 @@
 {% endblock %}
 {% block content %}
 
+
     <h1>Start wishing</h1>
     <a href="{% url 'user_list' %}">Your wishlist</a>
     <a href="{% url 'create_card' %}">Create card</a>
 
     <form method="GET" id="sortForm">
         {% csrf_token %}
-        <label for="sort">Sort by:</label>
+        <label class="sr-only" for="sort">Sort by:</label>
         <select id="sort" name="sort">
             <option value="latest" {% if sort_by == 'latest' %}selected{% endif %}>Latest</option>
             <option value="oldest" {% if sort_by == 'oldest' %}selected{% endif %}>Oldest</option>
@@ -25,7 +26,7 @@
 
 <form method="GET" id="filterForm">
     {% csrf_token %}
-    <label>Filter by tag:</label>
+    <label class="sr-only">Filter by tag:</label>
     {% for tag in tags %}
         <input class="hidden-checkbox" id="tagSelect{{ tag.id }}" type="checkbox" name="tags" value="{{ tag.id }}" {% if tag.id|stringformat:"s" in selected_tags %}checked{% endif %}>
         <label class="styled-label" for="tagSelect{{ tag.id }}">{{ tag.name }}</label>
