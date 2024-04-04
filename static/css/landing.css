@@ -38,7 +38,7 @@ p {
   margin-bottom: 20px;
 }
 
-button {
+/* button {
   font-size: 1.2rem;
   padding: 10px 20px;
   border-radius: 30px;
@@ -47,7 +47,7 @@ button {
   color: #ddd1c0;
   cursor: pointer;
   outline: none;
-}
+} */
 
 main {
   position: fixed;
