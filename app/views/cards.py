@@ -169,7 +169,7 @@ def create_card(request):
     - request: HttpRequest object.
 
     Return:
-    - HttpResponseRedirect object that redirects to the user_list view.
+    - HttpResponseRedirect object that redirects to the user_wishlist view.
     """
     tags = Tag.objects.all()
     context = {"tags": tags}
@@ -191,13 +191,13 @@ def create_card(request):
         new_card.save()
         new_card.tag.set(tags)
 
-        return redirect("user_list")
+        return redirect("user_wishlist")
     else:
         return render(request, "app/create-card.html", context)
 
 
 @login_required(login_url="/app/login/")
-def user_list(request):
+def user_wishlist(request):
     """
     View for displaying the user's wish list.
     Displays all cards created by the user.
@@ -206,16 +206,16 @@ def user_list(request):
     - request: HttpRequest object.
 
     Return:
-    - HttpResponse object with the rendered user-list.html template.
+    - HttpResponse object with the rendered user-wishlist.html template.
     """
-    user_lists = Card.objects.filter(user=request.user).order_by("-date_created")
+    user_wishlists = Card.objects.filter(user=request.user).order_by("-date_created")
     tags = set()
-    for card in user_lists:
+    for card in user_wishlists:
         tags.update(card.tag.all())
     context = {
-        "user_lists": user_lists,
+        "user_wishlists": user_wishlists,
     }
-    return render(request, "app/user-list.html", context)
+    return render(request, "app/user-wishlist.html", context)
 
 
 def edit_card(request, card_id):
@@ -228,7 +228,7 @@ def edit_card(request, card_id):
     - card_id: ID of the card to edit.
 
     Return:
-    - HttpResponseRedirect object that redirects to the user_list view.
+    - HttpResponseRedirect object that redirects to the user_wishlist view.
     """
     card = get_object_or_404(Card, pk=card_id)
     tags = Tag.objects.all()
@@ -250,7 +250,7 @@ def edit_card(request, card_id):
         card.save()
         card.tag.set(tags)
 
-        return redirect("user_list")
+        return redirect("user_wishlist")
     else:
         return render(request, "app/edit-card.html", context)
 
@@ -265,8 +265,8 @@ def delete_card(request, card_id):
     - card_id: ID of the card to delete.
 
     Return:
-    - HttpResponseRedirect object that redirects to the user_list view.
+    - HttpResponseRedirect object that redirects to the user_wishlist view.
     """
     card = get_object_or_404(Card, pk=card_id)
     card.delete()
-    return redirect("user_list")
+    return redirect("user_wishlist")
