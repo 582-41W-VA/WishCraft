@@ -1,0 +1,18 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block content %}
+	<h1>Admin panel</h1>
+
+	<h2>{% if form.instance.pk %}Edit User{% else %}New User{% endif %}</h2>
+
+	<form method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Save</button>
+		{% if form.instance.pk %}
+			<a href="{% url 'user_detail' pk=form.instance.pk %}">Cancel</a>
+		{% else %}
+			<a href="{% url 'user_list' %}">Cancel</a>
+		{% endif %}
+	</form>
+{% endblock %}
