@@ -1,0 +1,25 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block content %}
+	<h1>Admin panel</h1>
+
+	<h2>Edit Card</h2>
+
+	<form method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		
+		{% if form.instance.image %}
+         <img src="{{ form.instance.image.url }}" alt="{{ form.instance.title }}" width="250px" />
+      {% endif %}
+
+		{{ form.as_p }}
+		
+		<button type="submit">Save</button>
+
+		{% if form.instance.pk %}
+			<a href="{% url 'user_detail' pk=form.instance.user.pk %}">Cancel</a>
+		{% else %}
+			<a href="{% url 'user_detail' pk=request.user.pk %}">Cancel</a>
+		{% endif %}
+	</form>
+{% endblock %}

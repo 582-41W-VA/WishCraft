@@ -83,8 +83,8 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             print("User logged in")
-            if request.user.is_superuser:
-                return render(request, "app/admin.html")
+            if request.user.is_superuser or request.user.is_staff:
+                return redirect("admin_panel")
             return redirect("user_wishlist")
         else:
             messages.error(request, "Invalid credentials")

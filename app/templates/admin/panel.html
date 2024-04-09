@@ -1,0 +1,21 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block content %}
+	<h1>Admin panel</h1>
+
+	<article>
+		<div class="total-numbers">
+			<h3>Total users: {{ total_users }}</h3>
+			<h4>New users in the last day: {{ new_users_last_day }}</h4>
+			<h4>New users in the last week: {{ new_users_last_week }}</h4>
+			<h4>New users in the last month: {{ new_users_last_month }}</h4>
+
+			<h3>Total cards: {{ total_cards }}</h3>
+			<h4>New cards in the last day: {{ new_cards_last_day }}</h4>
+			<h4>New cards in the last week: {{ new_cards_last_week }}</h4>
+			<h4>New cards in the last month: {{ new_cards_last_month }}</h4>
+		</div>
+	</article>
+
+	<a href="{% url 'user_list' %}">View all Users</a>
+{% endblock %}
