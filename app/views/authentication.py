@@ -2,6 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 
+"""
+This module provides functions for user authentication and registration within the application.
+It includes functions for user creation, registration, login, logout, and rendering the landing page.
+"""
+
 
 def create_user(username, email, password, request):
     """
@@ -43,21 +48,36 @@ def register(request):
     - HttpResponse: Rendered HTML page.
     """
     if request.method == "POST":
-        username = request.POST["username"]
-        email = request.POST["email"]
-        password = request.POST["password"]
-        confirm_password = request.POST["confirm_password"]
+        # Extract form data
+        username = request.POST.get("username", "")
+        email = request.POST.get("email", "")
+        password = request.POST.get("password", "")
+        confirm_password = request.POST.get("confirm_password", "")
+
+        # Context for retaining form data
+        context = {
+            "username": username,
+            "email": email,
+            "password": "",  # It's a good practice not to send back the password
+            "confirm_password": "",  # Same for confirm password
+        }
+
+        # Check if any field is empty
+        if not (username and email and password and confirm_password):
+            messages.error(request, "Please fill in all fields")
+            return render(request, "app/register.html", context)
 
         # Check if passwords match
         if password != confirm_password:
             messages.error(request, "Passwords do not match")
-            return render(request, "app/register.html")
+            return render(request, "app/register.html", context)
 
         # Attempt to create the user
         if create_user(username, email, password, request):
             return redirect("login")
         else:
-            return redirect(register)
+            messages.error(request, "Failed to create user")
+            return render(request, "app/register.html", context)
     else:
         return render(request, "app/register.html")
 
@@ -77,8 +97,17 @@ def login(request):
     - HttpResponse: Rendered HTML page.
     """
     if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
+        username = request.POST.get("username", "")
+        password = request.POST.get("password", "")
+
+        # Context for retaining username
+        context = {"username": username}
+
+        # Check if any field is empty
+        if not (username and password):
+            messages.error(request, "Please fill in all fields")
+            return render(request, "app/login.html", context)
+
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
@@ -88,7 +117,7 @@ def login(request):
             return redirect("user_wishlist")
         else:
             messages.error(request, "Invalid credentials")
-            return redirect("login")
+            return render(request, "app/login.html", context)
     else:
         return render(request, "app/login.html")
 
