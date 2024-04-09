@@ -48,7 +48,13 @@ class UserForm(forms.ModelForm):
             "is_staff",
         ]
 
-        exclude = ["password", "password_confirm"]
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+        if not self.instance.pk:
+            self.fields["username"].required = True
+            self.fields["email"].required = True
+            self.fields["password"].required = True
+            self.fields["password_confirm"].required = True
 
     def clean(self):
         cleaned_data = super().clean()
