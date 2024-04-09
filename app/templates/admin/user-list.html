@@ -18,13 +18,4 @@
 	</article>
 
 	{% endfor %}
-
-	<!-- Warning message when deleting user - pop up version-->
-	 {% if messages %}
-    	{% for message in messages %}
-        	<script>
-            alert("{{ message }}");
-        	</script>
-    	{% endfor %}
-	{% endif %}
 {% endblock %}
