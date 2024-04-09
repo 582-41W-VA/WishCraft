@@ -7,11 +7,11 @@
 <section class="login_container">
     <div class="hero_image"></div>
         <div class="login">
-                <h1>Log in</h1>
+            <h1>Log in</h1>
             <form action="{% url 'login' %}" method="post">
                 {% csrf_token %}
-                <input type="text" name="username" id="username" placeholder="Username">
-                <input type="password" name="password" id="password" placeholder="Password">
+                <input type="text" name="username" id="username" placeholder="Username" value="{{ username }}" required>
+                <input type="password" name="password" id="password" placeholder="Password" required>
                 <input type="submit" value="Log in">
             </form>
             {% if messages %}
