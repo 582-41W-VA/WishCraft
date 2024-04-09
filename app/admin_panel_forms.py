@@ -21,6 +21,12 @@ class UserForm(forms.ModelForm):
 
         exclude = ["password", "password_confirm"]
 
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop("user", None)
+        super(UserForm, self).__init__(*args, **kwargs)
+        if user is not None and not user.is_superuser:
+            self.fields["is_superuser"].disabled = True
+
     def clean(self):
         cleaned_data = super().clean()
         password = cleaned_data.get("password")

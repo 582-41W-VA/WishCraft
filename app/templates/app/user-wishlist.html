@@ -12,7 +12,9 @@
             <article>
                 <h2>{{ user_wishlist.title }}</h2>
                 <a href="{% url 'card_detail' user_wishlist.id %}">
+						{% if user_wishlist.image %}
                     <img src="{{ user_wishlist.image.url }}" alt="{{ user_wishlist.title }}" width="250px" />
+						{% endif %}
                 </a>
                 <p>{{ user_wishlist.likes }}</p>
                 <ul>
