@@ -184,16 +184,25 @@ body {
   display: none;
 }
 
-
-
-header {
-  background-color: #ccc;
+.header {
+  background-color: var(--bg_color_light);
   padding: 10px 20px;
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
-  position: sticky;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.header.header-scroll {
+  opacity: 0.8; 
+  visibility: visible;
 }
 
 nav {
@@ -201,6 +210,24 @@ nav {
   gap: 20px;
 }
 
+#logo {
+  height: 50px;
+  width: auto;
+  margin-left: 1.5rem;
+  filter: invert(70%);
+}
+
+.header-btn{
+  color: var(--title_color_light);
+  padding: 10px 20px;
+  border-radius: var(--br);
+  transition: all 0.3s ease;
+}
+
+.header-btn:hover{
+  background-color: var(--secondary_color);
+  color: var( --title_color_dark);
+}
 
 input {
   width: 200px;

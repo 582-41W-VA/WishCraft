@@ -1,26 +1,36 @@
 {% extends "app/base.html" %}
 {% load static %}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/login_signup.css' %}">
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/login_signup.css' %}">
 {% endblock %}
 {% block content %}
 <section class="login_container">
     <div class="hero_image"></div>
-        <div class="login">
-            <h1>Log in</h1>
-            <form action="{% url 'login' %}" method="post">
-                {% csrf_token %}
-                <input type="text" name="username" id="username" placeholder="Username" value="{{ username }}" required>
-                <input type="password" name="password" id="password" placeholder="Password" required>
-                <input type="submit" value="Log in">
-            </form>
-            {% if messages %}
-                {% for message in messages %}
-                    <p>{{ message }}</p>
-                {% endfor %}
-            {% endif %}
-        </div>
+    <div class="login">
+        <img class="hero_logo" src="{% static 'images/logo.png' %}" alt="Hero Image">
+        <h1 class="loginsignuph1">Start Creating your Wishes!</h1>
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="username" id="username" placeholder="Username" value="{{ username }}" required>
+            <input type="password" name="password" id="password" placeholder="Password" required>
+            <input type="submit" value="Log in">
+        </form>
+        <h2 class="loginsignuph2">Don't have an Account? <a class="loginsignuplink" href="{% url 'register' %}">Register
+                Now!</a></h2>
+        {% if messages %}
+        {% for message in messages %}
+        <p class="loginerror">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+    </div>
 </section>
 </body>
+
 </html>
+
+<script>
+    document.getElementById('header-link').style.display = 'none';
+</script>
+
 {% endblock %}
