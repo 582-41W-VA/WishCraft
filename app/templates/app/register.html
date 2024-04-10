@@ -1,28 +1,38 @@
 {% extends "app/base.html" %}
 {% load static %}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/login_signup.css' %}">
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/login_signup.css' %}">
 {% endblock %}
 {% block content %}
-    <section class="sign_up_container">
-        <div class="hero_image"></div>
-        <div class="sign_up">
-            <h1>Sign up</h1>
-            <form action="{% url 'register' %}" method="post">
-                {% csrf_token %}
-                <input type="text" name="username" id="username" placeholder="Username">
-                <input type="email" name="email" id="email" placeholder="Email">
-                <input type="password" name="password" id="password" placeholder="Password">
-                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password">
-                <input type="submit" value="Sign up">
-            </form>
-            {% if messages %}
-                {% for message in messages %}
-                    <p>{{ message }}</p>
-                {% endfor %}
-            {% endif %}
-        </div>
-    </section>
+<section class="sign_up_container">
+    <div class="hero_image"></div>
+    <div class="sign_up">
+        <!-- <video src="{% static 'images/bgvideo.mp4' %}" autoplay muted loop></video> -->
+        <img class="hero_logo" src="{% static 'images/logo.png' %}" alt="Hero Image">
+        <h1 class="loginsignuph1">Start Creating your Wishes!</h1>
+        <form class="wrapper" action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="username" id="username" placeholder="Username">
+            <input type="email" name="email" id="email" placeholder="Email">
+            <input type="password" name="password" id="password" placeholder="Password">
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password">
+            <input class="submitbtn" type="submit" value="Sign up">
+        </form>
+        <h2 class="loginsignuph2">Already have an Account? <a class="loginsignuplink" href="{% url 'login' %}">Login!</a></h2>
+        {% if messages %}
+        {% for message in messages %}
+        <p class="registererror">{{ message }}</p>
+        {% endfor %}
+        {% endif %}        
+    </div>
+</section>
 </body>
+
 </html>
+
+<script>
+    document.getElementById('header-link').style.display = 'none';
+</script>
+
 {% endblock %}

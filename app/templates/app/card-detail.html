@@ -1,58 +1,63 @@
 {% extends "app/base.html" %}
 {% load static %}
+<link rel="stylesheet" href="{% static 'css/card-detail.css' %}">
 {% block content %}
 <!-- <a href="{% url 'home' %}">Home</a> -->
 <!-- <a href="{% url 'user_list' %}">Your wishlist</a> -->
 
-<section>
-    <h2>{{ card.title }}</h2>
-    <img src="{{ card.image.url }}" alt="{{ card.title }}" width="500px" />
-    <p>{{ card.user }}</p>
-    <span>{{ card.likes }}</span>
-    {% if request.user != card.user %}
+<section class="card-detail">
+    <div class="leftdetails">
+        <h2>{{ card.title }}</h2>
+        <img src="{{ card.image.url }}" alt="{{ card.title }}" width="500px" />
+        <p>{{ card.user }}</p>
+        <span>{{ card.likes }}</span>
+        {% if request.user != card.user %}
         {% if not has_liked %}
-            <a href="{% url 'increment_likes' card_id=card.id %}">Like</a>
+        <a href="{% url 'increment_likes' card_id=card.id %}">Like</a>
         {% endif %}
         {% if has_liked %}
-            <a href="{% url 'decrement_likes' card_id=card.id %}">Dislike</a>
+        <a href="{% url 'decrement_likes' card_id=card.id %}">Dislike</a>
         {% endif %}
-    {% endif %}
+        {% endif %}
 
 
-    <ul>
-        {% for tag in tags %}
-        <li>{{ tag.name }}</li>
-        {% endfor %}
-    </ul>
+        <ul>
+            {% for tag in tags %}
+            <li>{{ tag.name }}</li>
+            {% endfor %}
+        </ul>
 
-    {% if request.user == card.user %}
+        {% if request.user == card.user %}
         <div>
             <a href="{% url 'edit_card' card.id %}">Edit</a>
             <a href="{% url 'delete_card' card.id %}">Delete</a>
         </div>
+    </div>
     {% endif %}
 
-    <h3>Comments</h3>
+    <div class="rightdetails">
+        <h3>Comments</h3>
 
-    <form method="POST" action="{% url 'add_comment' card_id=card.id %}">
-        {% csrf_token %}
-        <label for="content">Comment:
-            <textarea name="content" required></textarea>
-        </label>
-        <button type="submit">Add Comment</button>
-    </form>
+        <form method="POST" action="{% url 'add_comment' card_id=card.id %}">
+            {% csrf_token %}
+            <label for="content">Comment:
+                <textarea name="content" required></textarea>
+            </label>
+            <button type="submit">Add Comment</button>
+        </form>
 
-    <article>
-        <ul>
-            {% for comment in comments %}
-            <li>
-                <p>{{ comment.content }}</p>
-                <p>By {{ comment.user }}</p>
-            </li>
-            {% empty %}
-            <li>No comments yet</li>
-            {% endfor %}
-        </ul>
-    </article>
+        <article>
+            <ul>
+                {% for comment in comments %}
+                <li>
+                    <p>{{ comment.content }}</p>
+                    <p>By {{ comment.user }}</p>
+                </li>
+                {% empty %}
+                <li>No comments yet</li>
+                {% endfor %}
+            </ul>
+        </article>
+    </div>
 </section>
 {% endblock %}

@@ -185,15 +185,15 @@ body {
 }
 
 
-
 header {
-  background-color: #ccc;
+  background: var( --bg_color_light);
   padding: 10px 20px;
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
   position: sticky;
   z-index: 100;
+  backdrop-filter: blur(20px);
 }
 
 nav {
@@ -201,6 +201,24 @@ nav {
   gap: 20px;
 }
 
+#logo {
+  height: 50px;
+  width: auto;
+  margin-left: 1.5rem;
+  filter: invert(70%);
+}
+
+.header-btn{
+  color: var(--title_color_light);
+  padding: 10px 20px;
+  border-radius: var(--br);
+  transition: all 0.3s ease;
+}
+
+.header-btn:hover{
+  background-color: var(--secondary_color);
+  color: var( --title_color_dark);
+}
 
 input {
   width: 200px;

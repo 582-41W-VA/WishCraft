@@ -1,3 +1,9 @@
+body {
+  min-height: 100vh;
+  background: var(--bg_color_dark);
+  font-family: epilogue, sans-serif;
+}
+
 .sign_up_container {
   display: flex;
   align-items: center;
@@ -12,6 +18,73 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.hero_logo{
+  height: 100px;
+  width: auto;
+  margin-bottom: 2rem;
+}
+
+.loginsignuph1 {
+  font-size: 1.5rem;
+  color: var(--title_color_dark);
+}
+
+.loginsignuph2 {
+  font-size: 1.2rem;
+  color: var(--title_color_dark);
+}
+
+.loginsignuplink{
+  color: var(--accent_color);
+  text-decoration: none;
+}
+
+video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+  z-index: -2;
+}
+
+/* .wrapper {
+  width: 360px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, .05);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  color: #fff;
+  border-radius: 10px;
+  padding: 30px 40px;
+} */
+
+.submitbtn{
+  width: 100%;
+  height: 40px;
+  background: var( --button_color_light);
+  color: var(--para_color_dark);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.loginerror,
+.registererror{
+  color: var(--accent_color);
+}
+
+.submitbtn:hover {
+  background: var( --button_color_dark);
+}
+
+input::placeholder {
+  text-align: center;
 }
 
 .sign_up, .login {
@@ -59,4 +132,15 @@ form input {
   flex-direction: column;
   gap: 1rem;
   padding: 3rem;
+}
+
+@media screen and (max-width: 768px) {
+  .sign_up, .login {
+    width: 80%;
+  }
+
+  .hero_image {
+    display: none;
+  }
+  
 }

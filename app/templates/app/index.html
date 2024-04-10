@@ -1,6 +1,7 @@
 {% extends "app/base.html" %}
 {% load static %}
 {% block css %}
+{{ block.super }}
 <link rel="stylesheet" href="{% static 'css/landing.css' %}">
 {% endblock %}
 {% block js %}
@@ -9,6 +10,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 {% endblock %}
 {% block content %}
+<body class="index-body">
 <!-- <section class="overlay">
         <div class="cta_login_register">
             <h1>WishCraft</h1>
@@ -31,6 +33,7 @@
         class="hero">
         <h1>Start wishing today</h1>
         <p>Share your wishes with the world</p>
+        <a href="{% url 'register' %}">Get Started!</a>
         <div class="sign_in_container">
             {% if request.user.is_authenticated %}
             <p>You are already logged in as {{ request.user.username }}</p>
@@ -48,6 +51,7 @@
     </section>
 
 </main>
+</body>
 {% endblock %}
 {% block script %}
 <script type="module">
@@ -111,5 +115,13 @@
 <script src="{% static 'js/scroll_items.js' %}"></script> <!-- the scroll script needs to load before the app -->
 
 <script type="module" src="{% static 'js/app.js' %}"></script>
+
+<script>
+    document.getElementById('home-link').style.display = 'none';
+    document.getElementById('create-card-link').style.display = 'none';
+    document.getElementById('wishlist-link').style.display = 'none';
+    document.getElementById('search-form').style.display = 'none';
+  </script>
+
 {% endblock %}
 
