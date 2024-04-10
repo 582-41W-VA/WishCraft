@@ -8,21 +8,21 @@
 <section class="login_container">
     <div class="hero_image"></div>
     <div class="login">
-        <!-- <video src="{% static 'images/bgvideo.mp4' %}" autoplay muted loop></video> -->
         <img class="hero_logo" src="{% static 'images/logo.png' %}" alt="Hero Image">
         <h1 class="loginsignuph1">Start Creating your Wishes!</h1>
-        <form class="wrapper" action="{% url 'login' %}" method="post">
+        <form action="{% url 'login' %}" method="post">
             {% csrf_token %}
-            <input type="text" name="username" id="username" placeholder="Username">
-            <input type="password" name="password" id="password" placeholder="Password">
-            <input class="submitbtn" type="submit" value="Log in">
+            <input type="text" name="username" id="username" placeholder="Username" value="{{ username }}" required>
+            <input type="password" name="password" id="password" placeholder="Password" required>
+            <input type="submit" value="Log in">
         </form>
-        <h2 class="loginsignuph2">Don't have an Account? <a class="loginsignuplink" href="{% url 'register' %}">Register Now!</a></h2>
+        <h2 class="loginsignuph2">Don't have an Account? <a class="loginsignuplink" href="{% url 'register' %}">Register
+                Now!</a></h2>
         {% if messages %}
         {% for message in messages %}
         <p class="loginerror">{{ message }}</p>
         {% endfor %}
-        {% endif %}        
+        {% endif %}
     </div>
 </section>
 </body>

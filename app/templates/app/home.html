@@ -10,7 +10,7 @@
 
 
 <h1>Start wishing</h1>
-<!-- <a href="{% url 'user_list' %}">Your wishlist</a> -->
+<!-- <a href="{% url 'user_wishlist' %}">Your wishlist</a> -->
 <!-- <a href="{% url 'create_card' %}">Create card</a> -->
 
 <form method="GET" id="sortForm">
@@ -40,7 +40,9 @@
 <article>
     <h2>{{ selected_card.title }}</h2>
     <a href="{% url 'card_detail' selected_card.id %}">
-        <img src="{{ selected_card.image.url }}" alt="{{ selected_card.title }}" width="250px" />
+        {% if selected_card.image %}
+            <img src="{{ selected_card.image.url }}" alt="{{ selected_card.title }}" width="250px" />
+        {% endif %}
     </a>
     <p>{{ selected_card.user }}</p>
     <span>{{ selected_card.likes }}</span>

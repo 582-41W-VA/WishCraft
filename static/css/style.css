@@ -184,16 +184,25 @@ body {
   display: none;
 }
 
-
-header {
-  background: var( --bg_color_light);
+.header {
+  background-color: var(--bg_color_light);
   padding: 10px 20px;
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
-  position: sticky;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   z-index: 100;
-  backdrop-filter: blur(20px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.header.header-scroll {
+  opacity: 0.8; 
+  visibility: visible;
 }
 
 nav {

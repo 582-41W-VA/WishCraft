@@ -1,0 +1,31 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/user_wishlist.css' %}">
+{% endblock %}
+{% block content %}
+
+<section>
+    <h1>{{ request.user.username }}'s wishlist</h1>
+    {% if user_wishlists %}
+        {% for user_wishlist in user_wishlists %}
+            <article>
+                <h2>{{ user_wishlist.title }}</h2>
+                <a href="{% url 'card_detail' user_wishlist.id %}">
+					{% if user_wishlist.image %}
+                        <img src="{{ user_wishlist.image.url }}" alt="{{ user_wishlist.title }}" width="250px" />
+					{% endif %}
+                </a>
+                <p>{{ user_wishlist.likes }}</p>
+                <ul>
+                    {% for tag in user_wishlist.tag.all %}
+                    <li>{{ tag.name }}</li>
+                    {% endfor %}
+                </ul>
+            </article>
+        {% endfor %}
+    {% else %}
+        <p>No wishlist found</p>
+    {% endif %}
+</section>
+{% endblock %}

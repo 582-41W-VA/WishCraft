@@ -24,18 +24,21 @@
     <header class="header" id="header-link">
         <nav>
             <a id="home-link" href="{% url 'home' %}">Home</a>
+
             <div class="logo">
                 <img id="logo" src="{% static 'images/logo.png' %}" alt="Logo">
-            </div>            
+            </div>
+
             <a id="create-card-link" href="{% url 'create_card' %}">Create card</a>
-            <a id="wishlist-link" href="{% url 'user_list' %}">Your wishlist</a>
+
+            <a id="wishlist-link" href="{% url 'user_wishlist' %}">Your wishlist</a>
             <div id="auth-links">
-              {% if request.user.is_authenticated %}
-              <a href="{% url 'logout' %}">Log out</a>
-              {% else %}
-              <a class="header-btn" id="register-link" href="{% url 'register' %}">Sign up</a>
-              <a class="header-btn" id="login-link" href="{% url 'login' %}">Log in</a>
-              {% endif %}
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}">Log out</a>
+                {% else %}
+                <a class="header-btn" id="register-link" href="{% url 'register' %}">Sign up</a>
+                <a class="header-btn" id="login-link" href="{% url 'login' %}">Log in</a>
+                {% endif %}
             </div>
         </nav>
         <form id="search-form" method="GET">
