@@ -1,3 +1,50 @@
+.card_selection {
+    margin: 40px 20px;
+}
+
+.input_fields {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.input_fields label {
+    font-size: 1.2em;
+}
+
+.card_selection input[type="text"] {
+    padding: 10px;
+    margin: var(--margin_medium);
+    border: 1px solid var(--border_color);
+    border-radius: var(--br-2);
+}
+
+.file-uploader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 5px;
+}
+
+.file-uploader #image {
+    display: none;
+}
+
+.file-uploader label[for="image"] {
+    padding: 1em 1.5em;
+    /* flex: 1 1 auto; */
+    text-align: center;
+    color: var(--para_color_dark);
+    background-color: var(--button_color_dark);
+    box-shadow: 1px 0 10px rgba(0, 0, 0, .15);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* tag labels */
+
 .hidden-checkbox {
     position: absolute;
     width: 1px;

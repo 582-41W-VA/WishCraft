@@ -9,29 +9,33 @@
 <a href="{% url 'user_wishlist' %}">Your wishlist</a> -->
 
 
-<section>
-    <form class="card_selection" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
+
+<form class="card_selection" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="input_fields">
         <label for="title">
             Title:
             <input id="title" type="text" name="title" required>
-        </label>
-        <label for="image">
-            Image:
-            <input id="image" type="file" name="image" required>
         </label>
         <label for="tagInput">
             Tag:
             <input id="tagInput" type="text" name="new_tag">
         </label>
-        <section class="tag_labels">
-            {% for tag in tags %}
-                <label class="styled-label" for="tagSelect{{ tag.id }}">
-                    <input class="hidden-checkbox" id="tagSelect{{ tag.id }}" type="checkbox" name="tags" value="{{ tag.id }}">{{ tag.name }}
-                </label>
-            {% endfor %}
-            <button id="createCardBtn" type="submit">Create</button>
-        </section>
-    </form>
-</section>
+        <div class="file-uploader">
+            <label for="image">
+                Select your image
+                <input id="image" type="file" name="image" required>
+            </label>
+        </div>
+    </div>
+    <div class="tag_labels">
+        {% for tag in tags %}
+        <label class="styled-label" for="tagSelect{{ tag.id }}">
+            <input class="hidden-checkbox" id="tagSelect{{ tag.id }}" type="checkbox" name="tags"
+                value="{{ tag.id }}">{{ tag.name }}
+        </label>
+        {% endfor %}
+        <button id="createCardBtn" type="submit">Create</button>
+    </div>
+</form>
 {% endblock %}
