@@ -11,12 +11,12 @@
     {% if user_wishlists %}
         {% for user_wishlist in user_wishlists %}
             <article>
-                <h2>{{ user_wishlist.title }}</h2>
                 <a href="{% url 'card_detail' user_wishlist.id %}">
 					{% if user_wishlist.image %}
                         <img src="{{ user_wishlist.image.url }}" alt="{{ user_wishlist.title }}" width="250px" />
 					{% endif %}
                 </a>
+                <h2>{{ user_wishlist.title }}</h2>
                 <p>{{ user_wishlist.likes }}</p>
                 <ul>
                     {% for tag in user_wishlist.tag.all %}

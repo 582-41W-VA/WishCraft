@@ -16,13 +16,9 @@ ul {
 .article_cards article {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     padding: 20px;
-    border: 1px solid #ccc;
     border-radius: 10px;
-    background: var(--bg_color_dark);
-    color: var(--para_color_dark);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     width: 100%;
     margin: auto;
@@ -33,9 +29,23 @@ ul {
 }
 
 .article_cards article img {
+    height: 350px;
     width: 100%;
+    border-radius: var(--br-7);
+    object-fit: cover;
 }
 
 .article_cards article .container {
     padding: 2px 16px;
+}
+
+h2 {
+    font-size: var(--fs-h4);
+    text-transform: uppercase;
+}
+
+p {
+    font-weight: 500;
+    font-size: clamp(var(--min-text-font-size), var(--preferred-text-font-size), var(--max-text-font-size));
+    color: var(--para_color_light);
 }
