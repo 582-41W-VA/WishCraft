@@ -37,14 +37,16 @@
         {% if selected_cards %}
         {% for selected_card in selected_cards %}
         <article>
-            <h2>{{ selected_card.title }}</h2>
             <a href="{% url 'card_detail' selected_card.id %}">
                 {% if selected_card.image %}
                     <img src="{{ selected_card.image.url }}" alt="{{ selected_card.title }}" width="250px" />
                 {% endif %}
             </a>
-            <p>{{ selected_card.user }}</p>
-            <span>{{ selected_card.likes }}</span>
+            <h2>{{ selected_card.title }}</h2>
+            <div class="user_likes">
+                <p>{{ selected_card.user }}</p>
+                <span>{{ selected_card.likes }}</span>
+            </div>
             <ul>
                 {% for tag in selected_card.tag.all %}
                 <li>{{ tag.name }}</li>
