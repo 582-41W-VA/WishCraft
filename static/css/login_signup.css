@@ -4,6 +4,10 @@ body {
   font-family: epilogue, sans-serif;
 }
 
+header {
+display: none;
+}
+
 .sign_up_container {
   display: flex;
   align-items: center;
