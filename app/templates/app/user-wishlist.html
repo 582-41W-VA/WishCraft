@@ -7,6 +7,7 @@
 
 <section>
     <h1>{{ request.user.username }}'s wishlist</h1>
+    <section class="article_cards">
     {% if user_wishlists %}
         {% for user_wishlist in user_wishlists %}
             <article>
@@ -27,5 +28,6 @@
     {% else %}
         <p>No wishlist found</p>
     {% endif %}
+    </section>
 </section>
 {% endblock %}
