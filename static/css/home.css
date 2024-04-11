@@ -5,20 +5,20 @@
     padding: 0;
     margin: -1px;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     border: 0;
 }
 
 .styled-label {
     display: inline-block;
-    padding: 10px;
+    padding: 10px 20px;
     background: var(--button_color_light);
     color: var(--para_color_dark);
     cursor: pointer;
     border-radius: var(--br-7);
 }
 
-.hidden-checkbox:checked + .styled-label {
+.hidden-checkbox:checked+.styled-label {
     background-color: #c0c0c0;
 }
 
