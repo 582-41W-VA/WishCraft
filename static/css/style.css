@@ -80,8 +80,7 @@ button {
 /*
   10. Remove default list styles
 */
-ul[role="list"],
-ol[role="list"] {
+li{
   list-style: none;
 }
 
@@ -155,9 +154,7 @@ a {
   --br-5: 1.5em;
   --br-6: 1.75em;
   --br-7: 2em;
-  --br-8: 2.25em;
-  --br-9: 2.5em;
-  --br-10: 2.75em;
+
 
 
   --padding_small: 0.5em;
@@ -173,6 +170,7 @@ a {
   --gap_medium: 1em;
   --gap_large: 1.5em;
 
+  --grid_template_columns: repeat(auto-fit, minmax(20rem, 1fr));
 }
 
 body {

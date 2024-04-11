@@ -1,3 +1,15 @@
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin: 40px 20px;
+}
+
+ul {
+    display: flex;
+    gap: 20px;
+}
+
 .hidden-checkbox {
     position: absolute;
     width: 1px;
@@ -29,4 +41,61 @@
     padding: 10px 20px;
     border-radius: var(--br-7);
     cursor: pointer;
+}
+
+.tag_labels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+
+/* Article cards */
+.article_cards {
+    display: grid;
+    grid-template-columns: var(--grid_template_columns);
+}
+
+.article_cards article {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: var(--bg_color_dark);
+    color: var(--para_color_dark);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 100%;
+    margin: auto;
+}
+
+.article_cards article:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.article_cards article img {
+    width: 100%;
+}
+
+.article_cards article .container {
+    padding: 2px 16px;
+}
+
+
+/* sort form */
+
+#sortForm {
+    margin: 20px 0;
+}
+
+#sort {
+    width: 200px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 5px;
+    background-color: #f8f8f8;
 }
