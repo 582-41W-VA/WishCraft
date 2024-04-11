@@ -31,23 +31,23 @@
             <a id="create-card-link" href="{% url 'create_card' %}">Create card</a>
 
             <a id="wishlist-link" href="{% url 'user_wishlist' %}">Your wishlist</a>
-            <div id="auth-links">
-                {% if request.user.is_authenticated %}
-                <a class="logout" href="{% url 'logout' %}">Log out</a>
-                {% else %}
-                <a class="header-btn" id="register-link" href="{% url 'register' %}">Sign up</a>
-                <a class="header-btn" id="login-link" href="{% url 'login' %}">Log in</a>
-                {% endif %}
-            </div>
+            <form id="search-form" method="GET">
+                {% csrf_token %}
+                <label for="search" class="sr_only">Search:</label>
+                <div class="search_container">
+                    <input type="text" id="search" name="search" value="{{ request.GET.search }}" placeholder="Search">
+                    <button type="submit"><i class="fa fa-search search-icon"></i></button>
+                </div>
+            </form>
         </nav>
-        <form id="search-form" method="GET">
-            {% csrf_token %}
-            <label for="search" class="sr_only">Search:</label>
-            <div class="search_container">
-                <input type="text" id="search" name="search" value="{{ request.GET.search }}" placeholder="Search">
-                <button type="submit"><i class="fa fa-search search-icon"></i></button>
-            </div>
-        </form>
+        <div id="auth-links">
+            {% if request.user.is_authenticated %}
+            <a class="logout" href="{% url 'logout' %}">Log out</a>
+            {% else %}
+            <a class="header-btn" id="register-link" href="{% url 'register' %}">Sign up</a>
+            <a class="header-btn" id="login-link" href="{% url 'login' %}">Log in</a>
+            {% endif %}
+        </div>
     </header>
     <main>
         {% block content %}{% endblock %}
