@@ -44,9 +44,12 @@
                 {% endif %}
             </a>
             <h2>{{ selected_card.title }}</h2>
-            <div class="user_likes">
+            <div class="user_container">
                 <p>{{ selected_card.user }}</p>
-                <span>{{ selected_card.likes }}</span>
+                <div class="user_likes">
+                    <i class="fa-solid fa-heart"></i>
+                    <span>{{ selected_card.likes }}</span>
+                </div>
             </div>
             <ul>
                 {% for tag in selected_card.tag.all %}

@@ -22,7 +22,10 @@
                 {% endif %}
             </a>
             <h2>{{ user_wishlist.title }}</h2>
-            <p>{{ user_wishlist.likes }}</p>
+            <div class="user_likes">
+                <i class="fa-solid fa-heart"></i>
+                <p>{{ user_wishlist.likes }}</p>
+            </div>
             <ul>
                 {% for tag in user_wishlist.tag.all %}
                 <li>{{ tag.name }}</li>
