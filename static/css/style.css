@@ -173,6 +173,12 @@ a {
   --grid_template_columns: repeat(auto-fit, minmax(20rem, 1fr));
 }
 
+/* Global styles */
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   min-height: 100vh;
   background: var(--bg_color_light);
