@@ -3,39 +3,24 @@ let images = [];
 let imageIndex = 0;
 
 async function fetchImages(){
-	const response = await fetch(`https://api.unsplash.com/photos/random?count=30&client_id=bibKns9LUjPwC0w9CUmuuwHjhmDBlYalqz5Yf806V6o`);
+	const response = await fetch(`https://api.unsplash.com/photos/random?count=28&client_id=bibKns9LUjPwC0w9CUmuuwHjhmDBlYalqz5Yf806V6o`);
 	const data = await response.json();
-	return data.map(photo => photo.urls.small);
-}
+	images = data.map(photo => photo.urls.small);
 
-async function createPosts(){
-	images = await fetchImages();
-	imageIndex = 0;
-	
-	for (let i = 1; i <= 28; i++) {	
+	for (let i = 1; i <= 28; i++) {
+		let randomNumber = Math.floor(Math.random() * 1001);
+
 		let item = {
-			 id: i,
-			 image: images[imageIndex],
+			id: i,
+			title: `Post ${i}`,
+			likes: Math.floor(Math.random() * 1001),
+			image: images[imageIndex % images.length],
 		};
 		imageIndex++;
 		posts.push(item);
 	}
-
-	const columns = document.getElementsByClassName('column');
-	posts.forEach((post, index) => {
-		const img = document.createElement('img');
-		img.src = post.image;
-
-		const postDiv = document.createElement('div');
-    	postDiv.className = 'post';
-    	postDiv.appendChild(img);
-
-		const column = columns[index % columns.length];
-		column.appendChild(postDiv);
-	});
 }
-
-createPosts().catch(error => console.error(error));
+    fetchImages().catch(error => console.error(error));
 
 console.log(posts);
-export { posts, images, imageIndex };
+export { posts, images, imageIndex, fetchImages };

@@ -1,7 +1,8 @@
-import { posts, images, imageIndex } from './scroll_item.js';
+import { posts, images, imageIndex, fetchImages } from './scroll_item.js';
 const scrollContainer = document.querySelector(".container");
 
-function generateMasonryGrid(columns, posts) {
+async function generateMasonryGrid(columns, posts) {
+	await fetchImages();
   scrollContainer.innerHTML = "";
 
   let columnsWrappers = {};
@@ -16,11 +17,11 @@ function generateMasonryGrid(columns, posts) {
   }
 
   for (let i = 0; i < columns; i++) {
-    let columnPosts = columnsWrappers[`column${i}`];
-    let div = document.createElement("div");
-    div.classList.add("column");
+		let columnPosts = columnsWrappers[`column${i}`];
+		let div = document.createElement("div");
+		div.classList.add("column");
 
-    columnPosts.forEach((post) => {
+		columnPosts.forEach((post) => {
       let postDiv = document.createElement("div");
       postDiv.classList.add("post");
 
@@ -33,28 +34,34 @@ function generateMasonryGrid(columns, posts) {
       let title = document.createElement("h3");
       title.innerText = post.title;
 
-    let iconDiv = document.createElement("div");
-    iconDiv.classList.add("like-icon");
+		let iconDiv = document.createElement("div");
+		iconDiv.classList.add("like-icon");
 
-    let heartIcon = document.createElement("i");
-    heartIcon.classList.add("fas", "fa-heart");
-    iconDiv.appendChild(heartIcon);
+		let heartIcon = document.createElement("i");
+		heartIcon.classList.add("fas", "fa-heart");
+		iconDiv.appendChild(heartIcon);
 
-    let likeCount = document.createElement("span");
-    likeCount.classList.add("like-count");
-    let likeCountText = document.createTextNode(post.likes || "0"); // replace with actual like count
-    likeCount.appendChild(likeCountText);
-    iconDiv.appendChild(likeCount);
+		let likesSpan = document.createElement("span");
+		likesSpan.className = "like-count";
+		likesSpan.textContent = post.likes;
 
-    hoverOverlay.appendChild(title);
-    hoverOverlay.appendChild(iconDiv);
-    postDiv.append(image, hoverOverlay);
-    div.appendChild(postDiv);
-    });
+		let likeCount = document.createElement("span");
+		likeCount.classList.add("like-count");
+		let likeCountText = document.createTextNode(post.likes || "0"); // replace with actual like count
+		likeCount.appendChild(likeCountText);
+		iconDiv.appendChild(likeCount);
+
+		hoverOverlay.appendChild(title);
+		hoverOverlay.appendChild(iconDiv);
+		postDiv.append(image, hoverOverlay);
+		div.appendChild(postDiv);
+   });
 
     scrollContainer.appendChild(div);
   }
 }
+
+generateMasonryGrid().catch(error => console.error(error));
 
 let previousScreenSize = window.innerWidth;
 
