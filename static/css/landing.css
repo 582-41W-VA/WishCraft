@@ -145,7 +145,7 @@ img {
 .like-count {
   background: red;
   color: white;
-  border-radius: 50%;
+  border-radius: 50px;
   padding: 1.5px 8px;
   font-size: 0.8em;
 }
