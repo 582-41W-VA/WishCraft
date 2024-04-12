@@ -2,7 +2,7 @@ section {
     display: flex;
     flex-direction: column;
     gap: 40px;
-    margin: 40px 20px;
+    margin-inline: var(--margin_medium);
 }
 
 ul {
@@ -11,7 +11,14 @@ ul {
 }
 
 ul li {
-font-size: var(--fs-milli);}
+    font-size: var(--fs-milli);
+}
+
+h1 {
+    text-align: center;
+    font-size: var(--fs-h1);
+    font-family: 'Sansita', sans-serif;
+}
 
 /* tags */
 .hidden-checkbox {
@@ -28,6 +35,7 @@ font-size: var(--fs-milli);}
 .styled-label {
     display: inline-block;
     padding: 10px 20px;
+    margin: 5px;
     background: var(--button_color_light);
     color: var(--para_color_dark);
     cursor: pointer;
@@ -47,14 +55,9 @@ font-size: var(--fs-milli);}
     cursor: pointer;
 }
 
-.tag_labels {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-}
 
+/* article cards */
 
-/* Article cards */
 .article_cards {
     display: grid;
     grid-template-columns: var(--grid_template_columns);
@@ -71,9 +74,7 @@ font-size: var(--fs-milli);}
     margin: auto;
 }
 
-.article_cards article:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
+
 
 .article_cards article img {
     height: 350px;
@@ -100,22 +101,52 @@ h2 {
 
 .user_likes p {
     font-weight: 500;
-    font-size: clamp(var(--min-text-font-size),var(--preferred-text-font-size),var(--max-text-font-size));
+    font-size: clamp(var(--min-text-font-size), var(--preferred-text-font-size), var(--max-text-font-size));
     color: var(--para_color_light);
 }
 
-/* sort form */
+/* Media Queries */
 
-#sortForm {
-    margin: 20px 0;
-}
+@media screen and (min-width: 1024px) {
+    #clearTagsBtn {
+        position: absolute;
+        top: 60%;
+        left: 83%;
+        background-color: var(--button_color_dark);
+        color: var(--para_color_dark);
+        border: none;
+        padding: 10px 20px;
+        border-radius: var(--br-7);
+        cursor: pointer;
+    }
 
-#sort {
-    width: 200px;
-    height: 30px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    padding: 5px;
-    background-color: #f8f8f8;
+    .tag_labels {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+
+    .article_cards article:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    /* sort form */
+
+    #sortForm {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    #sort {
+        width: 200px;
+        height: 30px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        padding: 5px;
+        background-color: #f8f8f8;
+    }
 }

@@ -80,7 +80,7 @@ button {
 /*
   10. Remove default list styles
 */
-li{
+li {
   list-style: none;
 }
 
@@ -198,29 +198,31 @@ header a {
   color: var(--title_color_dark);
 }
 
-nav {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
 #logo {
   height: 50px;
   width: auto;
-  margin-left: 1.5rem;
-  filter: invert(70%);
+  margin-right: 10px;
+  /* filter: invert(70%); */
 }
 
-.logout {
-  background: var(--button_color_light);
-  padding: 10px 20px;
-  border-radius: var(--br);
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  background-color: var(--bg_color_dark);
+  padding: 20px;
   transition: all 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
 }
 
-.logout:hover {
-  background-color: var(--accent_color);
-  color: var(--title_color_dark);
+nav.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* search inputs */
@@ -264,3 +266,7 @@ input:focus {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
+
+/* Media queries */
+

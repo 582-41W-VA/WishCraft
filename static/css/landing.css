@@ -32,46 +32,7 @@ p {
 
 
 header {
-  background-color: var(--bg_color_light);
-  /* visibility: hidden; */
-  /* opacity: 0; */
-  transition: all 0.5s ease;
-}
-
-header.show {
-  visibility: visible;
-  opacity: 1;
-}
-
-
-nav {
-  display: flex;
-  gap: 20px;
-}
-
-#logo {
-  height: 50px;
-  width: auto;
-  margin-left: 1.5rem;
-  filter: invert(70%);
-}
-
-.header-btn {
-  color: var(--title_color_light);
-  padding: 10px 20px;
-  border-radius: var(--br);
-  transition: all 0.3s ease;
-}
-
-.header-btn:hover {
-  background-color: var(--secondary_color);
-  color: var(--title_color_dark);
-}
-
-#auth-links {
-  position: absolute;
-  top: 35%;
-  right: 3%;
+  display: none;
 }
 
 main {
