@@ -1,40 +1,41 @@
 const posts = [];
-
-const images = [
-  "https://source.unsplash.com/random?1",
-  "https://source.unsplash.com/random?2",
-  "https://source.unsplash.com/random?3",
-  "https://source.unsplash.com/random?4",
-  "https://source.unsplash.com/random?5",
-  "https://source.unsplash.com/random?6",
-  "https://source.unsplash.com/random?7",
-  "https://source.unsplash.com/random?8",
-  "https://source.unsplash.com/random?9",
-  "https://source.unsplash.com/random?10",
-  "https://source.unsplash.com/random?11",
-  "https://source.unsplash.com/random?12",
-];
-
+let images = [];
 let imageIndex = 0;
 
-for (let i = 1; i <= 80; i++) {
-  let item = {
-    id: i,
-    title: `Post ${i}`,
-    icon: `
-        <div class='like-icon'>
-        <span class='like-count'>0</span>
-            <i class='fas fa-heart'></i>
-        </div>
-    `,
-    image: images[imageIndex],
-  };
-  posts.push(item);
-  imageIndex++;
-  if (imageIndex > images.length - 1) {
-    imageIndex = 0;
-  }
+async function fetchImages(){
+	const response = await fetch(`https://api.unsplash.com/photos/random?count=30&client_id=bibKns9LUjPwC0w9CUmuuwHjhmDBlYalqz5Yf806V6o`);
+	const data = await response.json();
+	return data.map(photo => photo.urls.small);
 }
 
-// console.log(posts);
+async function createPosts(){
+	images = await fetchImages();
+	imageIndex = 0;
+	
+	for (let i = 1; i <= 28; i++) {	
+		let item = {
+			 id: i,
+			 image: images[imageIndex],
+		};
+		imageIndex++;
+		posts.push(item);
+	}
+
+	const columns = document.getElementsByClassName('column');
+	posts.forEach((post, index) => {
+		const img = document.createElement('img');
+		img.src = post.image;
+
+		const postDiv = document.createElement('div');
+    	postDiv.className = 'post';
+    	postDiv.appendChild(img);
+
+		const column = columns[index % columns.length];
+		column.appendChild(postDiv);
+	});
+}
+
+createPosts().catch(error => console.error(error));
+
+console.log(posts);
 export { posts, images, imageIndex };
