@@ -5,52 +5,36 @@
 <link rel="stylesheet" href="{% static 'css/landing.css' %}">
 {% endblock %}
 {% block js %}
-<!-- <script defer src="{% static 'js/landing.js' %}"></script> -->
 <!-- gsap -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 {% endblock %}
 {% block content %}
+
 <body class="index-body">
-<!-- <section class="overlay">
-        <div class="cta_login_register">
-            <h1>WishCraft</h1>
+        <section class="hero">
+            <h1>Start wishing today</h1>
             <p>Share your wishes with the world</p>
-            {% if request.user.is_authenticated %}
+            <div class="first_cta">
+                <a href="{% url 'register' %}">Get Started!</a>
+                <a href="{% url 'login' %}">Log in</a>
+            </div>
+            <!-- <div class="sign_in_container">
+                {% if request.user.is_authenticated %}
                 <p>You are already logged in as {{ request.user.username }}</p>
                 <a href="{% url 'logout' %}">Log out</a>
-            {% else %}
-                <p>You are not logged in</p>
-                <a id="register" href="{% url 'register' %}">Sign up</a>
-                <a id="login" href="{% url 'login' %}">Log in</a>
-            {% endif %}
-        </div>
-    </section>
-    <section class="gallery_container">
-    </section> -->
+                {% else %}
+                {% endif %}
+            </div> -->
+        </section>
+        <section class="gallery"></section>
 
-<main>
-    <section
-        class="hero">
-        <h1>Start wishing today</h1>
-        <p>Share your wishes with the world</p>
-        <a href="{% url 'register' %}">Get Started!</a>
-        <div class="sign_in_container">
-            {% if request.user.is_authenticated %}
-            <p>You are already logged in as {{ request.user.username }}</p>
-            <a href="{% url 'logout' %}">Log out</a>
-            {% else %}
-            <!-- <p>You are not logged in</p> -->
-            <!-- <button><a id="register" href="{% url 'register' %}">Sign up</a></button> -->
-            <!-- <button><a id="login" href="{% url 'login' %}">Log in</a></button> -->
-            {% endif %}
-        </div>
-    </section>
-    <section class="gallery"></section>
+        <section class="container">
+        </section>
 
-    <section class="container">
-    </section>
-
-</main>
+        <section class="second_cta">
+            <a href="{% url 'register' %}">Register now!</a>
+            <a href="{% url 'login' %}">Log in</a>
+        </section>
 </body>
 {% endblock %}
 {% block script %}
@@ -112,27 +96,10 @@
 
 </script>
 
-<script src="{% static 'js/scroll_items.js' %}"></script> <!-- the scroll script needs to load before the app -->
+
+<script src="{% static 'js/scroll_items.js' %}"></script>
 
 <script type="module" src="{% static 'js/app.js' %}"></script>
 
-<script>
-    document.getElementById('home-link').style.display = 'none';
-    document.getElementById('create-card-link').style.display = 'none';
-    document.getElementById('wishlist-link').style.display = 'none';
-    document.getElementById('search-form').style.display = 'none';
-</script>
-<script>
-        const header = document.querySelector(".header");
-        
-        window.addEventListener("scroll", function() {
-            if (window.scrollY > 0) {
-                header.classList.add("header-scroll"); // Add "header-scroll" class when scrolled down
-            } else {
-                header.classList.remove("header-scroll"); // Remove "header-scroll" class when scrolled back up
-            }
-        });
-</script>
 
 {% endblock %}
-

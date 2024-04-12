@@ -1,3 +1,73 @@
 h1 {
+    text-align: center;
     font-size: 40px;
+    margin: 20px 0;
+    font-family: 'Sansita', sans-serif;
+}
+
+ul {
+    display: flex;
+    gap: 20px;
+}
+
+li {
+    border: 2px solid var(--accent_color);
+    border-radius: var(--br-7);
+    padding: 8px 16px;
+}
+
+/* Article cards */
+.article_cards {
+    display: grid;
+    grid-template-columns: var(--grid_template_columns);
+    gap: var(--gap_medium);
+}
+
+.article_cards article {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    transition: 0.3s;
+    width: 100%;
+    margin: auto;
+}
+
+.article_cards article:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.article_cards article img {
+    height: 350px;
+    width: 100%;
+    border-radius: var(--br-7);
+    object-fit: cover;
+}
+
+.article_cards article .container {
+    padding: 2px 16px;
+}
+
+h2 {
+    font-size: var(--fs-h4);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--accent_color);
+}
+
+p {
+    font-weight: 500;
+    font-size: clamp(var(--min-text-font-size), var(--preferred-text-font-size), var(--max-text-font-size));
+    color: var(--para_color_light);
+}
+
+.user_likes {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.user_likes i {
+    color: var(--secondary_color);
 }

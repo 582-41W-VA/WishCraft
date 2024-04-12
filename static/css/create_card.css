@@ -1,0 +1,118 @@
+.card_selection {
+padding-inline: var(--padding_medium);
+}
+
+.input_fields {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.input_fields label {
+    font-size: var(--fs-h6);
+    text-transform: uppercase;
+}
+
+.card_selection input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: var(--margin_medium);
+    border: 1px solid var(--border_color);
+    border-radius: var(--br-2);
+}
+
+.file-uploader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    margin: var(--margin_medium);
+}
+
+.file-uploader #image {
+    display: none;
+}
+
+.file-uploader label[for="image"] {
+    padding: 1em 1.5em;
+    text-align: center;
+    font-weight: 600;
+    color: var(--para_color_dark);
+    background-color: var(--button_color_dark);
+    box-shadow: 1px 0 10px rgba(0, 0, 0, .15);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* tag labels */
+
+.hidden-checkbox {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.styled-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--button_color_light);
+    color: var(--para_color_dark);
+    cursor: pointer;
+    border-radius: var(--br-7);
+}
+
+.hidden-checkbox:checked+.styled-label {
+    background-color: #c0c0c0;
+}
+
+#createCardBtn {
+    background-color: var(--button_color_dark);
+    color: var(--para_color_dark);
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--br-7);
+    cursor: pointer;
+}
+
+.tag_labels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+
+/* media queries */
+
+@media screen and (min-width: 1024px) {
+    .input_fields {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .input_fields label {
+        margin-right: 20px;
+    }
+
+    .card_selection input[type="text"] {
+        width: 50%;
+    }
+
+    .file-uploader {
+        width: 50%;
+    }
+
+    .file-uploader label[for="image"] {
+        margin-right: 20px;
+    }
+
+    .tag_labels {
+        width: 50%;
+    }
+}

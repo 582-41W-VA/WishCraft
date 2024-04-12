@@ -80,8 +80,7 @@ button {
 /*
   10. Remove default list styles
 */
-ul[role="list"],
-ol[role="list"] {
+li {
   list-style: none;
 }
 
@@ -155,9 +154,7 @@ a {
   --br-5: 1.5em;
   --br-6: 1.75em;
   --br-7: 2em;
-  --br-8: 2.25em;
-  --br-9: 2.5em;
-  --br-10: 2.75em;
+
 
 
   --padding_small: 0.5em;
@@ -167,11 +164,19 @@ a {
   --margin_small: 0.5em;
   --margin_medium: 1em;
   --margin_large: 1.5em;
+  --margin_xlarge: 4.5em;
 
   --gap_small: 0.5em;
   --gap_medium: 1em;
   --gap_large: 1.5em;
 
+  --grid_template_columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+
+/* Global styles */
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -180,55 +185,57 @@ body {
   font-family: epilogue, sans-serif;
 }
 
+main {
+  margin-inline: var(--margin_medium);
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
 
-.header {
-  background-color: var(--bg_color_light);
+/* this header will be for all the other pages only */
+
+header {
+  background-color: var(--bg_color_dark);
   padding: 10px 20px;
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  align-items: center;
 }
 
-.header.header-scroll {
-  opacity: 0.8; 
-  visibility: visible;
-}
-
-nav {
-  display: flex;
-  gap: 20px;
+header a {
+  color: var(--title_color_dark);
 }
 
 #logo {
   height: 50px;
   width: auto;
-  margin-left: 1.5rem;
-  filter: invert(70%);
+  margin-right: 10px;
+  /* filter: invert(70%); */
 }
 
-.header-btn{
-  color: var(--title_color_light);
-  padding: 10px 20px;
-  border-radius: var(--br);
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  background-color: var(--bg_color_dark);
+  padding: 20px;
   transition: all 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
 }
 
-.header-btn:hover{
-  background-color: var(--secondary_color);
-  color: var( --title_color_dark);
+nav.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
+/* search inputs */
 input {
   width: 200px;
   box-sizing: border-box;
@@ -244,7 +251,7 @@ input:focus {
   border-color: #333;
 }
 
-.search-container {
+.search_container {
   position: relative;
 }
 
@@ -256,16 +263,20 @@ input:focus {
 }
 
 #search {
-  padding-left: 30px; /* adjust as needed */
+  padding-left: 30px;
 }
 
-.sr-only {
+.sr_only {
   position: absolute;
   width: 1px;
   height: 1px;
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0,0,0,0);
+  clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
+
+/* Media queries */
+

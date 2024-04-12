@@ -8,7 +8,7 @@
     <title>WishCraft</title>
     <!-- cdn -->
     <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://kit.fontawesome.com/2f6fae777f.js" crossorigin="anonymous"></script>
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Epilogue:300,regular,500,600,700,800,900" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Sansita:regular,italic,700,800,900" rel="stylesheet" />
@@ -21,20 +21,20 @@
 </head>
 
 <body>
-    <header class="header" id="header-link">
+    <header>
+        <div class="logo">
+            <img id="logo" src="{% static 'images/logo.png' %}" alt="Logo">
+        </div>
         <nav>
             <a id="home-link" href="{% url 'home' %}">Home</a>
-
-            <div class="logo">
-                <img id="logo" src="{% static 'images/logo.png' %}" alt="Logo">
-            </div>
 
             <a id="create-card-link" href="{% url 'create_card' %}">Create card</a>
 
             <a id="wishlist-link" href="{% url 'user_wishlist' %}">Your wishlist</a>
+
             <div id="auth-links">
                 {% if request.user.is_authenticated %}
-                <a href="{% url 'logout' %}">Log out</a>
+                <a class="logout" href="{% url 'logout' %}">Log out</a>
                 {% else %}
                 <a class="header-btn" id="register-link" href="{% url 'register' %}">Sign up</a>
                 <a class="header-btn" id="login-link" href="{% url 'login' %}">Log in</a>
@@ -43,12 +43,13 @@
         </nav>
         <form id="search-form" method="GET">
             {% csrf_token %}
-            <label for="search" class="sr-only">Search:</label>
-            <div class="search-container">
+            <label for="search" class="sr_only">Search:</label>
+            <div class="search_container">
                 <input type="text" id="search" name="search" value="{{ request.GET.search }}" placeholder="Search">
                 <button type="submit"><i class="fa fa-search search-icon"></i></button>
             </div>
         </form>
+
     </header>
     <main>
         {% block content %}{% endblock %}

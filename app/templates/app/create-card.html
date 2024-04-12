@@ -1,29 +1,40 @@
 {% extends "app/base.html" %}
 {% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/create_card.css' %}">
+{% endblock %}
+<!-- JS -->
+{% block js %}
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}
 {% block content %}
-<h1>Create Wish List</h1>
-<a href="{% url 'home' %}">Home</a>
-<a href="{% url 'user_wishlist' %}">Your wishlist</a>
 
-<form method="POST" enctype="multipart/form-data">
+
+
+<form class="card_selection" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <label for="title">
-        Title:
-        <input id="title" type="text" name="title" required>
-    </label>
-    <label for="image">
-        Image:
-        <input id="image" type="file" name="image" required>
-    </label>
-    <label for="tagInput">
-        Tag:
-        <input id="tagInput" type="text" name="new_tag">
-    </label>
-    {% for tag in tags %}
-        <label for="tagSelect{{ tag.id }}">
-            <input id="tagSelect{{ tag.id }}" type="checkbox" name="tags" value="{{ tag.id }}">{{ tag.name }}
+    <div class="input_fields">
+        <label class="sr_only" id="titleLabel">Title</label>
+        <input aria-labelledby="titleLabel" id="title" type="text" name="title" placeholder="title" required>
+        
+        <label class="sr_only" id="tagInputLabel">Tag</label>
+        <input aria-labelledby="tagInputLabel" id="tagInput" type="text" name="new_tag" placeholder="tag">
+        
+        <div class="file-uploader">
+            <label for="image">
+                Select your image
+                <input id="image" type="file" name="image" required>
+            </label>
+        </div>
+    </div>
+    <div class="tag_labels">
+        {% for tag in tags %}
+        <label class="styled-label" for="tagSelect{{ tag.id }}">
+            <input class="hidden-checkbox" id="tagSelect{{ tag.id }}" type="checkbox" name="tags"
+                value="{{ tag.id }}">{{ tag.name }}
         </label>
-    {% endfor %}
-    <button type="submit">Create</button>
+        {% endfor %}
+        <button id="createCardBtn" type="submit">Create</button>
+    </div>
 </form>
 {% endblock %}
