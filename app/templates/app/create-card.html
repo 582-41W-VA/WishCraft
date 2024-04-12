@@ -14,14 +14,12 @@
 <form class="card_selection" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="input_fields">
-        <label for="title">
-            Title:
-            <input id="title" type="text" name="title" required>
-        </label>
-        <label for="tagInput">
-            Tag:
-            <input id="tagInput" type="text" name="new_tag">
-        </label>
+        <label class="sr_only" id="titleLabel">Title</label>
+        <input aria-labelledby="titleLabel" id="title" type="text" name="title" placeholder="title" required>
+        
+        <label class="sr_only" id="tagInputLabel">Tag</label>
+        <input aria-labelledby="tagInputLabel" id="tagInput" type="text" name="new_tag" placeholder="tag">
+        
         <div class="file-uploader">
             <label for="image">
                 Select your image

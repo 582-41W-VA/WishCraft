@@ -179,6 +179,10 @@ body {
   font-family: epilogue, sans-serif;
 }
 
+main {
+  margin-inline: var(--margin_medium);
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
