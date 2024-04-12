@@ -14,18 +14,26 @@
         <section class="hero">
             <h1>Start wishing today</h1>
             <p>Share your wishes with the world</p>
-            <a href="{% url 'register' %}">Get Started!</a>
-            <div class="sign_in_container">
+            <div class="first_cta">
+                <a href="{% url 'register' %}">Get Started!</a>
+                <a href="{% url 'login' %}">Log in</a>
+            </div>
+            <!-- <div class="sign_in_container">
                 {% if request.user.is_authenticated %}
                 <p>You are already logged in as {{ request.user.username }}</p>
                 <a href="{% url 'logout' %}">Log out</a>
                 {% else %}
                 {% endif %}
-            </div>
+            </div> -->
         </section>
         <section class="gallery"></section>
 
         <section class="container">
+        </section>
+
+        <section class="second_cta">
+            <a href="{% url 'register' %}">Register now!</a>
+            <a href="{% url 'login' %}">Log in</a>
         </section>
 </body>
 {% endblock %}
