@@ -34,7 +34,7 @@ Note: if you are on mac you might need to use ```python3``` or ```pip3```
 
 ## Project architecture:
 
-We were following Django general architecture with separating views according its function in the logic (authentication.py - login, sign up, sign out, cards.py - all manipulations with cards data)
+We were following Django general architecture with separating views according its function in the logic (authentication.py - login, sign up, sign out, cards.py - all manipulations with cards data, admin_panel.py - all manipulations with admin logic)
 
 ## Entity-Relationship Diagram and DB schema
 - ERD
