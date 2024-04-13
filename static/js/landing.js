@@ -1,52 +1,26 @@
-// const galleryContainer = document.querySelector(".gallery_container");
+// when on the landing page, hide the navbar
+document.getElementById("home-link").style.display = "none";
+document.getElementById("create-card-link").style.display = "none";
+document.getElementById("wishlist-link").style.display = "none";
+document.getElementById("search-form").style.display = "none";
 
-// // Initialize Masonry with options (optional)
-// const masonry = new Masonry(galleryContainer, {
-//   itemSelector: ".gallery-image",
-//   columnWidth: 200,
-//   gutter: 10,
-//   percentPosition: true,
-// });
+document.addEventListener("DOMContentLoaded", function () {
+  const header = document.querySelector("header");
 
-// const images = Array.from(
-//   { length: 100 },
-//   () => "https://source.unsplash.com/random/200x200"
-// );
-
-// // Duplicate the images array to create a seamless loop
-// const allImages = [...images, ...images];
-
-// function appendImages() {
-//   const visibleImages = 10;
-//   for (let i = 0; i < visibleImages; i++) {
-//     const imageUrl = allImages[i];
-//     const img = document.createElement("img");
-//     img.src = imageUrl;
-//     img.onload = () => {
-//       img.classList.add("loaded");
-//       img.classList.add("gallery-image");
-//       console.log(img);
-//     };
-//     galleryContainer.appendChild(img);
-//   }
-//   masonry.layout();
-// }
-
-// document.addEventListener("DOMContentLoaded", function() {
-//   appendImages();
-// });
-
-// galleryContainer.addEventListener("scroll", () => {
-//   const scrollTop = galleryContainer.scrollTop;
-//   const scrollableHeight = galleryContainer.scrollHeight;
-//   const threshold = scrollableHeight - galleryContainer.clientHeight * 2; // Adjust the threshold as needed
-//   if (scrollTop >= threshold) {
-//     appendImages();
-//   }
-// });
+  console.log("Landing.js is connected");
 
 
-document.getElementById('home-link').style.display = 'none';
-document.getElementById('create-card-link').style.display = 'none';
-document.getElementById('wishlist-link').style.display = 'none';
-document.getElementById('search-form').style.display = 'none';
+  window.addEventListener("scroll", function () {
+    console.log(window.scrollY);
+    if (window.scrollY >= 200) {
+      if (!header.classList.contains("show")) {
+        header.classList.add("show");
+      }
+    } else {
+      if (header.classList.contains("show")) {
+        header.classList.remove("show");
+      }
+    }
+  });
+});
+
