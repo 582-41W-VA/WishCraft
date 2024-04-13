@@ -3,9 +3,6 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
-{% block js %}
-<script defer src="{% static 'js/script.js' %}"></script>
-{% endblock %}
 {% block content %}
 <section>
     <h1>Wish List</h1>
@@ -27,8 +24,8 @@
 
         <div class="tag_labels">
             {% for tag in tags %}
-            <input class="hidden-checkbox" id="tagSelect{{ tag.id }}" type="checkbox" name="tags" value="{{ tag.id }}" {% if tag.id|stringformat:"s" in selected_tags %}checked{% endif %} >
-            <label class="styled-label" for="tagSelect{{ tag.id }}">{{ tag.name }}</label>
+            <input class="hidden_checkbox" id="tagSelect{{ tag.id }}" type="checkbox" name="tags" value="{{ tag.id }}" {% if tag.id|stringformat:"s" in selected_tags %}checked{% endif %} >
+            <label class="styled_label" for="tagSelect{{ tag.id }}">{{ tag.name }}</label>
             {% endfor %}
             <button type="button" id="clearTagsBtn">Clear All Tags</button>
         </div>

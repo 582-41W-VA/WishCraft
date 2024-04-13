@@ -10,32 +10,27 @@
 {% endblock %}
 {% block content %}
 
-<body class="index-body">
-        <section class="hero">
-            <h1>Start wishing today</h1>
-            <p>Share your wishes with the world</p>
-            <div class="first_cta">
-                <a href="{% url 'register' %}">Get Started!</a>
-                <a href="{% url 'login' %}">Log in</a>
-            </div>
-            <!-- <div class="sign_in_container">
-                {% if request.user.is_authenticated %}
-                <p>You are already logged in as {{ request.user.username }}</p>
-                <a href="{% url 'logout' %}">Log out</a>
-                {% else %}
-                {% endif %}
-            </div> -->
-        </section>
-        <section class="gallery"></section>
+<section class="hero">
+    <h1>Start wishing today</h1>
+    <p>Share your wishes with the world</p>
+    <div class="first_cta">
+        <a href="{% url 'register' %}">Get Started!</a>
+        <a href="{% url 'login' %}">Log in</a>
+    </div>
+</section>
+<section class="gallery"></section>
 
-        <section class="container">
-        </section>
+<section class="container">
+</section>
 
-        <section class="second_cta">
-            <a href="{% url 'register' %}">Register now!</a>
-            <a href="{% url 'login' %}">Log in</a>
-        </section>
-</body>
+<section class="second_cta">
+    <div class="logo">
+        <img id="logo_XL" src="{% static 'images/logo_XL.png' %}" alt="Logo">
+    </div>
+    <h3>Come and create a world of wishes</h3>
+    <a href="{% url 'register' %}">Register now!</a>
+    <a href="{% url 'login' %}">Log in</a>
+</section>
 {% endblock %}
 {% block script %}
 <script type="module">
@@ -99,7 +94,7 @@
 
 <script src="{% static 'js/scroll_items.js' %}"></script>
 
-<script type="module" src="{% static 'js/app.js' %}"></script>
+<script type="module" src="{% static 'js/app.js' %}" data-register-url="{% url 'register' %}"></script>
 
 
 {% endblock %}

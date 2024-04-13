@@ -7,7 +7,7 @@ async function fetchImages(){
 	const data = await response.json();
 	images = data.map(photo => photo.urls.small);
 
-	for (let i = 1; i <= 28; i++) {
+	for (let i = 1; i <= 20; i++) {
 		let randomNumber = Math.floor(Math.random() * 1001);
 
 		let item = {

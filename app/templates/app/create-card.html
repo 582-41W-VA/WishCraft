@@ -3,10 +3,6 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/create_card.css' %}">
 {% endblock %}
-<!-- JS -->
-{% block js %}
-<script src="{% static 'js/script.js' %}"></script>
-{% endblock %}
 {% block content %}
 
 
@@ -20,7 +16,7 @@
         <label class="sr_only" id="tagInputLabel">Tag</label>
         <input aria-labelledby="tagInputLabel" id="tagInput" type="text" name="new_tag" placeholder="tag">
         
-        <div class="file-uploader">
+        <div class="file_uploader">
             <label for="image">
                 Select your image
                 <input id="image" type="file" name="image" required>
@@ -29,8 +25,8 @@
     </div>
     <div class="tag_labels">
         {% for tag in tags %}
-        <label class="styled-label" for="tagSelect{{ tag.id }}">
-            <input class="hidden-checkbox" id="tagSelect{{ tag.id }}" type="checkbox" name="tags"
+        <label class="styled_label" for="tagSelect{{ tag.id }}">
+            <input class="hidden_checkbox" id="tagSelect{{ tag.id }}" type="checkbox" name="tags"
                 value="{{ tag.id }}">{{ tag.name }}
         </label>
         {% endfor %}

@@ -1,3 +1,7 @@
+#search-form {
+  display: none;
+}
+
 li {
   list-style-type: none;
 }

@@ -1,6 +1,6 @@
 h1 {
     text-align: center;
-    font-size: 40px;
+    font-size: var(--fs-h1);
     margin: 20px 0;
     font-family: 'Sansita', sans-serif;
 }
@@ -13,8 +13,9 @@ ul {
 li {
     border: 2px solid var(--accent_color);
     border-radius: var(--br-7);
-    padding: 8px 16px;
+    padding: var(--padding_small) var(--padding_medium);
 }
+
 
 /* Article cards */
 .article_cards {
@@ -26,9 +27,9 @@ li {
 .article_cards article {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    padding: 15px;
-    border-radius: 10px;
+    gap: var(--gap_medium);
+    padding: var(--padding_medium);
+    border-radius: var(--br-2);
     transition: 0.3s;
     width: 100%;
     margin: auto;
@@ -46,7 +47,7 @@ li {
 }
 
 .article_cards article .container {
-    padding: 2px 16px;
+    padding: 2px var(--padding_medium);
 }
 
 h2 {
@@ -65,7 +66,7 @@ p {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 10px;
+    gap: var(--gap_small);
 }
 
 .user_likes i {
