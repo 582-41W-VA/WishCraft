@@ -16,9 +16,6 @@ li {
     padding: var(--padding_small) var(--padding_medium);
 }
 
-#search-form {
-    display: none;
-}
 
 /* Article cards */
 .article_cards {
