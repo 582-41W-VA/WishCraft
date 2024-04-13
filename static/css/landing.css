@@ -99,14 +99,6 @@ img {
   opacity: 0.5;
 }
 
-/* .sign_in_container {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 10px;
-} */
-
-
 
 /* infinite scroll */
 .container {
@@ -176,9 +168,17 @@ img {
 .second_cta {
   height: 50vh;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: space-around;
+  gap: 20px;
   padding: 10px;
+}
+
+.second_cta h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
 }
 
 .second_cta a {

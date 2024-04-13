@@ -18,13 +18,6 @@
                 <a href="{% url 'register' %}">Get Started!</a>
                 <a href="{% url 'login' %}">Log in</a>
             </div>
-            <!-- <div class="sign_in_container">
-                {% if request.user.is_authenticated %}
-                <p>You are already logged in as {{ request.user.username }}</p>
-                <a href="{% url 'logout' %}">Log out</a>
-                {% else %}
-                {% endif %}
-            </div> -->
         </section>
         <section class="gallery"></section>
 
@@ -32,6 +25,7 @@
         </section>
 
         <section class="second_cta">
+            <h3>Come and create a world of wishes</h3>
             <a href="{% url 'register' %}">Register now!</a>
             <a href="{% url 'login' %}">Log in</a>
         </section>
@@ -99,7 +93,7 @@
 
 <script src="{% static 'js/scroll_items.js' %}"></script>
 
-<script type="module" src="{% static 'js/app.js' %}"></script>
+<script type="module" src="{% static 'js/app.js' %}" data-register-url="{% url 'register' %}"></script>
 
 
 {% endblock %}
