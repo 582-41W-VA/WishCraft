@@ -14,7 +14,7 @@
             {% csrf_token %}
             <input type="text" name="username" id="username" placeholder="Username" value="{{ username }}" required>
             <input type="password" name="password" id="password" placeholder="Password" required>
-            <input type="submit" value="Log in">
+            <input class="" type="submit" value="Log in">
         </form>
         <h2 class="loginsignuph2">Don't have an Account? <a class="loginsignuplink" href="{% url 'register' %}">Register
                 Now!</a></h2>

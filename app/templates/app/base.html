@@ -26,6 +26,11 @@
             <img id="logo" src="{% static 'images/logo.png' %}" alt="Logo">
         </div>
         <nav>
+
+            {% if request.user.is_superuser or request.user.is_staff %}
+            <a id="admin-link" href="{% url 'admin_panel' %}">Admin Panel</a>
+            {% endif %}
+            
             <a id="home-link" href="{% url 'home' %}">Home</a>
 
             <a id="create-card-link" href="{% url 'create_card' %}">Create card</a>
