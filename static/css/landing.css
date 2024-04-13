@@ -20,7 +20,6 @@ h1 {
 h3 {
   text-transform: uppercase;
   font-size: 1.5em;
-  font-weight: 400;
 }
 
 p {
@@ -156,6 +155,7 @@ img {
   justify-content: center;
   opacity: 0;
   transition: opacity 0.3s;
+  pointer-events: none;
 }
 
 .post:hover .overlay {
@@ -166,13 +166,16 @@ img {
 
 /* footer */
 .second_cta {
-  height: 50vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
   padding: 10px;
+
+  background: var(--bg_color_light);
+  color: var(--title_color_light);
 }
 
 .second_cta h3 {
@@ -186,8 +189,8 @@ img {
   width: fit-content;
   margin: 0 auto;
   padding: 10px 20px;
-  color: var(--title_color_dark);
-  background: var(--button_color_light);
+  color: var(--title_color_light);
+  background: var(--button_color_dark);
   border-radius: 10px;
   transition: all 0.3s ease;
 }
@@ -197,10 +200,10 @@ img {
 @media screen and (min-width: 1024px) {
 
   h1 {
-    font-size: 3rem;
-    text-align: center;
-    font-weight: 200;
-    margin-bottom: 20px;
+    width: 100%;
+    font-size: var(--fs-h2);
+    line-height: var(--lh-2);
+    margin: 0 auto;
   }
 
   .item {
