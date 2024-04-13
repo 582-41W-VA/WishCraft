@@ -25,7 +25,7 @@ h3 {
 p {
   font-size: 1.2rem;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: var(--margin_large);
 }
 
 header {
@@ -56,10 +56,10 @@ main {
   display: block;
   width: fit-content;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: var(--padding_small) var(--padding_medium);
   color: var(--title_color_dark);
   background: var(--button_color_light);
-  border-radius: 10px;
+  border-radius: var(--br-2);
   transition: all 0.3s ease;
 }
 
@@ -112,7 +112,7 @@ img {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--gap_small);
 }
 
 .post {
@@ -123,7 +123,7 @@ img {
 .like-icon {
   position: relative;
   display: inline-block;
-  margin: 10px;
+  margin: var(--margin_small);
   width: 100%;
   cursor: pointer;
 
@@ -137,7 +137,7 @@ img {
   background: red;
   color: white;
   border-radius: 50px;
-  padding: 1.5px 8px;
+  padding: 1.5px var(--padding_small);
   font-size: 0.8em;
 }
 
@@ -171,8 +171,8 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  padding: 10px;
+  gap: var(--gap_large);
+  padding: var(--padding_small);
 
   position: relative;
   background: var(--secondary_color);
@@ -180,7 +180,7 @@ img {
 }
 
 .second_cta h3 {
-  font-size: 2rem;
+  font-size: var(--fs-h2);
   font-weight: 600;
   text-align: center;
 }
@@ -189,7 +189,7 @@ img {
   display: block;
   width: fit-content;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: var(--padding_small) var(--padding_medium);
   color: var(--title_color_light);
   background: var(--button_color_dark);
   border-radius: 10px;
