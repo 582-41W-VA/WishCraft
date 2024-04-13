@@ -93,18 +93,25 @@ a {
   /* colors */
   --accent_color: #ff4f14;
   --secondary_color: #9d2710;
+
   --bg_color_dark: #1f2120;
   --bg_color_light: #ddd1c0;
+
   --title_color_dark: #ddd1c0;
   --title_color_light: #1f2120;
+
   --para_color_dark: #ddd1c0;
   --para_color_light: #1f2120;
+
   --subtitle_color_dark: #ff4f14;
   --subtitle_color_light: #9d2710;
+
   --button_color_dark: #ff4f14;
   --button_color_light: #9d2710;
+
   --button_neutral_color_dark: #1f2120;
   --button_neutral_color_light: #ddd1c0;
+  
   --border_color_dark: #ddd1c0;
   --border_color_light: #1f2120;
 
@@ -212,7 +219,6 @@ header a {
   height: 50px;
   width: auto;
   margin-right: 10px;
-  /* filter: invert(70%); */
 }
 
 nav {
@@ -278,5 +284,4 @@ input:focus {
 }
 
 
-/* Media queries */
 

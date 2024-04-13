@@ -1,5 +1,9 @@
+#search-form {
+    display: none;
+}
+
 .card_selection {
-padding-inline: var(--padding_medium);
+    padding-inline: var(--padding_medium);
 }
 
 .input_fields {
@@ -16,39 +20,39 @@ padding-inline: var(--padding_medium);
 
 .card_selection input[type="text"] {
     width: 100%;
-    padding: 10px;
+    padding: var(--padding_small);
     margin: var(--margin_medium);
     border: 1px solid var(--border_color);
     border-radius: var(--br-2);
 }
 
-.file-uploader {
+.file_uploader {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    border-radius: 5px;
+    border-radius: var(--br);
     margin: var(--margin_medium);
 }
 
-.file-uploader #image {
+.file_uploader #image {
     display: none;
 }
 
-.file-uploader label[for="image"] {
-    padding: 1em 1.5em;
+.file_uploader label[for="image"] {
+    padding: var(--padding_medium) var(--padding_large);
     text-align: center;
     font-weight: 600;
     color: var(--para_color_dark);
     background-color: var(--button_color_dark);
     box-shadow: 1px 0 10px rgba(0, 0, 0, .15);
-    border-radius: 5px;
+    border-radius: var(--br);
     cursor: pointer;
 }
 
 /* tag labels */
 
-.hidden-checkbox {
+.hidden_checkbox {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -59,16 +63,16 @@ padding-inline: var(--padding_medium);
     border: 0;
 }
 
-.styled-label {
+.styled_label {
     display: inline-block;
-    padding: 10px 20px;
+    padding: var(--padding_small) var(--padding_medium);
     background: var(--button_color_light);
     color: var(--para_color_dark);
     cursor: pointer;
     border-radius: var(--br-7);
 }
 
-.hidden-checkbox:checked+.styled-label {
+.hidden_checkbox:checked+.styled_label {
     background-color: #c0c0c0;
 }
 
@@ -76,7 +80,7 @@ padding-inline: var(--padding_medium);
     background-color: var(--button_color_dark);
     color: var(--para_color_dark);
     border: none;
-    padding: 10px 20px;
+    padding: var(--padding_small) var(--padding_medium);
     border-radius: var(--br-7);
     cursor: pointer;
 }
@@ -84,7 +88,7 @@ padding-inline: var(--padding_medium);
 .tag_labels {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: var(--gap_medium);
 }
 
 
@@ -104,11 +108,11 @@ padding-inline: var(--padding_medium);
         width: 50%;
     }
 
-    .file-uploader {
+    .file_uploader {
         width: 50%;
     }
 
-    .file-uploader label[for="image"] {
+    .file_uploader label[for="image"] {
         margin-right: 20px;
     }
 
