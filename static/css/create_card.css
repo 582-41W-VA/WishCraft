@@ -1,3 +1,7 @@
+#search-form {
+    display: none;
+}
+
 .card_selection {
 padding-inline: var(--padding_medium);
 }

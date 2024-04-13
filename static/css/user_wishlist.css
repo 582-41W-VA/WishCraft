@@ -16,6 +16,10 @@ li {
     padding: 8px 16px;
 }
 
+#search-form {
+    display: none;
+}
+
 /* Article cards */
 .article_cards {
     display: grid;
