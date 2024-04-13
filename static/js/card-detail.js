@@ -6,15 +6,19 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 
 function addAnimation() {
   scrollers.forEach((scroller) => {
-    scroller.setAttribute("data-animated", true);
-
     const scrollerInner = scroller.querySelector('.scroller__inner');
-    const scrollerContent = Array.from(scrollerInner.children);
+    const numTags = scrollerInner.children.length;
 
-    scrollerContent.forEach((item) => {
-      const duplicatedItem = item.cloneNode(true);
-      duplicatedItem.setAttribute('aria-hidden', true);
-      scrollerInner.appendChild(duplicatedItem);
-    });
+    if (numTags > 4) {
+      scroller.setAttribute("data-animated", true);
+
+      const scrollerContent = Array.from(scrollerInner.children);
+
+      scrollerContent.forEach((item) => {
+        const duplicatedItem = item.cloneNode(true);
+        duplicatedItem.setAttribute('aria-hidden', true);
+        scrollerInner.appendChild(duplicatedItem);
+      });
+    }
   });
 }
