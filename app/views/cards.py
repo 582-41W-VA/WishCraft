@@ -174,8 +174,6 @@ def create_card(request):
     tags = Tag.objects.all()
     context = {"tags": tags}
     if request.method != "POST":
-        tags = Tag.objects.all()
-        context = {"tags": tags}
         return render(request, "app/create-card.html", context)
     else:
         new_tag_name = request.POST.get("new_tag", "")

@@ -1,7 +1,5 @@
-{% extends "app/base.html" %}
-{% load static %}
-{% block css %}
-<link rel="stylesheet" href="{% static 'css/user_wishlist.css' %}">
+{% extends "app/base.html" %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/user_wishlist.css' %}" />
 {% endblock %}
 <!-- JS -->
 {% block js %}
@@ -16,7 +14,7 @@
                 <article>
                     <a href="{% url 'card_detail' card.id %}">
                         {% if card.image %}
-                            <img src="{{ card.image.url }}" alt="{{ card.title }}" width="250px" />
+                        <img src="{{ card.image.url }}" alt="{{ card.title }}" />
                         {% endif %}
                     </a>
                     <h2>{{ card.title }}</h2>
@@ -26,7 +24,7 @@
                     </div>
                     <ul>
                         {% for tag in card.tag.all %}
-                            <li>{{ tag.name }}</li>
+                        <li>{{ tag.name }}</li>
                         {% endfor %}
                     </ul>
                 </article>
