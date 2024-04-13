@@ -5,13 +5,14 @@
 <link rel="stylesheet" href="{% static 'css/landing.css' %}">
 {% endblock %}
 {% block js %}
-<!-- <script defer src="{% static 'js/landing.js' %}"></script> -->
+<script defer src="{% static 'js/landing.js' %}"></script>
 <!-- gsap -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 {% endblock %}
 {% block content %}
+
 <body class="index-body">
-<!-- <section class="overlay">
+    <!-- <section class="overlay">
         <div class="cta_login_register">
             <h1>WishCraft</h1>
             <p>Share your wishes with the world</p>
@@ -28,29 +29,28 @@
     <section class="gallery_container">
     </section> -->
 
-<main>
-    <section
-        class="hero">
-        <h1>Start wishing today</h1>
-        <p>Share your wishes with the world</p>
-        <a href="{% url 'register' %}">Get Started!</a>
-        <div class="sign_in_container">
-            {% if request.user.is_authenticated %}
-            <p>You are already logged in as {{ request.user.username }}</p>
-            <a href="{% url 'logout' %}">Log out</a>
-            {% else %}
-            <!-- <p>You are not logged in</p> -->
-            <!-- <button><a id="register" href="{% url 'register' %}">Sign up</a></button> -->
-            <!-- <button><a id="login" href="{% url 'login' %}">Log in</a></button> -->
-            {% endif %}
-        </div>
-    </section>
-    <section class="gallery"></section>
+    <main>
+        <section class="hero">
+            <h1>Start wishing today</h1>
+            <p>Share your wishes with the world</p>
+            <a href="{% url 'register' %}">Get Started!</a>
+            <div class="sign_in_container">
+                {% if request.user.is_authenticated %}
+                <p>You are already logged in as {{ request.user.username }}</p>
+                <a href="{% url 'logout' %}">Log out</a>
+                {% else %}
+                <!-- <p>You are not logged in</p> -->
+                <!-- <button><a id="register" href="{% url 'register' %}">Sign up</a></button> -->
+                <!-- <button><a id="login" href="{% url 'login' %}">Log in</a></button> -->
+                {% endif %}
+            </div>
+        </section>
+        <section class="gallery"></section>
 
-    <section class="container">
-    </section>
+        <section class="container">
+        </section>
 
-</main>
+    </main>
 </body>
 {% endblock %}
 {% block script %}
@@ -123,16 +123,15 @@
     document.getElementById('search-form').style.display = 'none';
 </script>
 <script>
-        const header = document.querySelector(".header");
-        
-        window.addEventListener("scroll", function() {
-            if (window.scrollY > 0) {
-                header.classList.add("header-scroll"); // Add "header-scroll" class when scrolled down
-            } else {
-                header.classList.remove("header-scroll"); // Remove "header-scroll" class when scrolled back up
-            }
-        });
+    const header = document.querySelector(".header");
+
+    window.addEventListener("scroll", function () {
+        if (window.scrollY > 100) {
+            header.classList.add("header-scroll"); // Add "header-scroll" class when scrolled down
+        } else {
+            header.classList.remove("header-scroll"); // Remove "header-scroll" class when scrolled back up
+        }
+    });
 </script>
 
 {% endblock %}
-

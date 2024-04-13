@@ -1,9 +1,246 @@
+li {
+  list-style-type: none;
+}
+/* Card Section */
 .card-detail {
   display: flex;
+  justify-content: space-evenly;
+  padding: 30px;
 }
 
-.leftdetails,
+.leftdetails {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto auto;
+}
+
+.cardtitle {
+  grid-row: 1;
+  font-size: 2rem;
+  margin-bottom: 0.2rem;
+  text-align: center;
+  text-shadow: 1px 3px 2px #9d281050;
+}
+
+.carddetailimg {
+  grid-row: 2;
+  width: auto;
+  height: 400px;
+  margin: auto;
+  margin-bottom: 0.4rem;
+  border: 5px solid #9d281031;
+  border-radius: 10px;
+}
+
+.cardusername {
+  text-transform: capitalize;
+  margin-bottom: 0.2rem;
+}
+
+.cardusername,
+.carddetaillikes {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.carddetailsubmenu {
+  display: flex;
+  justify-content: space-between;
+  grid-row: 3;
+  border-bottom: 1px solid black;
+  margin-bottom: 0.3rem;
+}
+
+.tag-list {
+  margin: 0;
+  padding-inline: 0;
+  text-transform: uppercase;
+  color: var(--para_color_dark);
+}
+
+.tag-list li {
+  padding: 0.5rem;
+  background: var(--bg_color_dark);
+  border-radius: 0.5rem;
+}
+
+.scroller {
+  max-width: 450px;
+}
+
+.scroller[data-animated="true"] {
+  overflow: hidden;
+  -webkit-mask:
+    linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+    mask:
+    linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+}
+
+.scroller[data-animated="true"] .scroller__inner {
+  width: max-content;
+  flex-wrap: nowrap;
+  animation: scroll var(--_animation-duration, 40s) var(--_animation_direction, forwards) linear infinite;
+}
+
+.scroller[data-direction="right"]{
+  --_animation-direction: reverse;
+}
+
+.scroller[data-direction="left"]{
+  --_animation-direction: forwards;
+}
+
+.scroller[data-speed="slow"]{
+  --_animation-duration: 120s;
+}
+
+.scroller[data-speed="fast"]{
+  --_animation-duration: 30s;
+}
+
+@keyframes scroll {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
+  }
+}
+
+.scroller__inner {
+  padding-block: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.carddetailbtns {
+  grid-row: 5;
+  text-align: center;
+  gap: 2rem;
+}
+
+.editbtn,
+.deletebtn {
+  padding: 10px 15px;
+  background: var(--button_color_light);
+  border-radius: 10px;
+  color: var(--button_neutral_color_light);
+  margin-bottom: 1rem;
+  transition: 0.3s ease;
+}
+
+.editbtn:hover,
+.deletebtn:hover {
+  background: var(--button_color_dark);
+  box-shadow: 1px 1px 5px 1px #00000050;
+}
+
+/* Comment Section */
 .rightdetails {
-  width: 50%;
+  background-color: var(--bg_color_dark);
+  border-radius: 10px;
+  padding: 15px;
+  max-width: 500px;
+  height: 650px;
+}
+
+.comment-container {
+  background-color: var(--bg_color_dark);
+  border-radius: 10px;
+  padding: 15px;
+  height: 300px;
+}
+
+.comment-list-container {
+  border-radius: 10px;
   padding: 10px;
+  height: inherit;
+  overflow-y: scroll;
+}
+
+.commenttitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  border-bottom: 1px solid #ddd1c087;
+  color: var(--para_color_dark);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.commentlist {
+  background: var(--bg_color_light);
+  color: var(--para_color_light);
+  list-style: none;
+  margin-bottom: 0.5rem;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.commentwarning {
+  color: var(--para_color_dark);
+}
+
+.cardcomment {
+  font-size: 1.2rem;
+  padding: 5px;
+  margin-bottom: 0.2rem;
+  white-space: wrap;
+  word-wrap: break-word;
+  border-bottom: 3px #20202029;
+  border-bottom-style: dotted;
+}
+
+.cardcommentuser {
+  opacity: 0.7;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.comment-box {
+  padding: 10px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.comment-box textarea {
+  background: #eee;
+  width: 100%;
+  height: 152px;
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 0 0 0.5px #0003;
+}
+
+.comment-box textarea:focus {
+  outline-color: var(--accent_color);
+}
+
+.comment-box .submitbtn {
+  float: right;
+  padding: 6px 14px;
+  border: none;
+  background: var(--button_color_light);
+  color: var(--button_neutral_color_light);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: 0.3s ease;
+}
+
+.comment-box .submitbtn:hover {
+  background: var(--button_color_dark);
+}
+
+@media (max-width: 768px) {
+  .card-detail {
+    flex-direction: column;
+  }
+  
+  .leftdetails,
+  .rightdetails {
+    width: 100%;
+  }
+
+  .leftdetails {
+    margin-bottom: 3rem;
+  }
 }
