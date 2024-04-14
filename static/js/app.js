@@ -28,6 +28,8 @@ async function generateMasonryGrid(columns, posts) {
       let image = document.createElement("img");
       image.src = post.image;
 
+      const registerUrl = document.getElementById("app-script-tag").dataset.registerUrl;
+
       image.addEventListener("click", () => {
         window.location.href = registerUrl;
       });
