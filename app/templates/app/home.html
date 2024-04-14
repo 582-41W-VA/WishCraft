@@ -37,7 +37,7 @@
         <article>
             <a href="{% url 'card_detail' selected_card.id %}">
                 {% if selected_card.image %}
-                    <img src="{{ selected_card.image.url }}" alt="{{ selected_card.title }}" width="250px" />
+                    <img src="{{ selected_card.image.url }}" alt="{{ selected_card.title }}" />
                 {% endif %}
             </a>
             <h2>{{ selected_card.title }}</h2>
@@ -56,7 +56,7 @@
         </article>
         {% endfor %}
         {% else %}
-        <p>No item found</p>
+        <p>No match found</p>
         {% endif %}
     </section>
 </section>
