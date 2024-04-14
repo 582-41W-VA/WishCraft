@@ -11,10 +11,8 @@ body {
 }
 
 h1 {
-  width: 300px;
-  font-size: var(--fs-h3);
+  font-size: var(--fs-h4);
   line-height: var(--lh-2);
-  margin: 0 auto;
 }
 
 h3 {
@@ -23,9 +21,9 @@ h3 {
 }
 
 p {
-  font-size: 1.2rem;
-  text-align: center;
-  margin-bottom: var(--margin_large);
+  font-size: clamp (var(--min-text-font-size), var(--preferred-text-font-size), var(--max-text-font-size));
+  margin: var(--margin_medium) auto;
+  line-height: var(--lh-3);
 }
 
 header {
@@ -45,17 +43,22 @@ main {
 
 /* hero section */
 .hero {
+  width: 24em;
+  text-align: center;
+  padding: var(--padding_medium);
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+  display: flex;
+  flex-direction: column;
 }
 
 .hero a {
   display: block;
   width: fit-content;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding: var(--padding_small) var(--padding_medium);
   color: var(--title_color_dark);
   background: var(--button_color_light);
@@ -70,8 +73,7 @@ main {
 .first_cta {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  padding: 10px;
+  justify-content: space-evenly;
 }
 
 /* hero images in background */
@@ -174,9 +176,8 @@ img {
   gap: var(--gap_large);
   padding: var(--padding_small);
 
-  position: relative;
-  background: var(--secondary_color);
-  color: var(--title_color_light);
+  background: url(../images/noise_gradient_3.jpeg) center/cover no-repeat;
+  color: var(--title_color_dark);
 }
 
 .second_cta h3 {
@@ -190,31 +191,26 @@ img {
   width: fit-content;
   margin: 0 auto;
   padding: var(--padding_small) var(--padding_medium);
-  color: var(--title_color_light);
+  color: var(--title_color_dark);
   background: var(--button_color_dark);
   border-radius: 10px;
   transition: all 0.3s ease;
 }
 
-.second_cta h3, .second_cta a {
+.second_cta h3,
+.second_cta a {
   position: relative;
   z-index: 10;
 }
 
-#logo_XL {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  opacity: 0.5;
-  height: 800px;
-  width: auto;
-}
 
 /* media queries */
 
 @media screen and (min-width: 1024px) {
+
+  .hero {
+    width: 30em;
+  }
 
   h1 {
     width: 100%;
