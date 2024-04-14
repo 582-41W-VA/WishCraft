@@ -173,7 +173,9 @@ def create_card(request):
     """
     tags = Tag.objects.all()
     context = {"tags": tags}
-    if request.method == "POST":
+    if request.method != "POST":
+        return render(request, "app/create-card.html", context)
+    else:
         new_tag_name = request.POST.get("new_tag", "")
         tag_ids = request.POST.getlist("tags")
         tags = Tag.objects.filter(id__in=tag_ids)
@@ -192,8 +194,6 @@ def create_card(request):
         new_card.tag.set(tags)
 
         return redirect("user_wishlist")
-    else:
-        return render(request, "app/create-card.html", context)
 
 
 @login_required(login_url="/app/login/")
@@ -209,11 +209,15 @@ def user_wishlist(request):
     - HttpResponse object with the rendered user-wishlist.html template.
     """
     user_wishlists = Card.objects.filter(user=request.user).order_by("-date_created")
-    tags = set()
-    for card in user_wishlists:
-        tags.update(card.tag.all())
+    search_query = request.GET.get("search")
+    if search_query:
+        searched_cards = user_wishlists.filter(title__icontains=search_query)
+    else:
+        searched_cards = user_wishlists
+
     context = {
         "user_wishlists": user_wishlists,
+        "searched_cards": searched_cards,
     }
     return render(request, "app/user-wishlist.html", context)
 
@@ -233,7 +237,9 @@ def edit_card(request, card_id):
     card = get_object_or_404(Card, pk=card_id)
     tags = Tag.objects.all()
     context = {"card": card, "tags": tags}
-    if request.method == "POST":
+    if request.method != "POST":
+        return render(request, "app/edit-card.html", context)
+    else:
         new_tag_name = request.POST.get("new_tag", "")
         tag_ids = request.POST.getlist("tags")
         tags = Tag.objects.filter(id__in=tag_ids)
@@ -251,8 +257,6 @@ def edit_card(request, card_id):
         card.tag.set(tags)
 
         return redirect("user_wishlist")
-    else:
-        return render(request, "app/edit-card.html", context)
 
 
 def delete_card(request, card_id):
