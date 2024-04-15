@@ -1,5 +1,5 @@
 section {
-        margin-inline: var(--margin_medium);
+    margin-inline: var(--margin_medium);
 }
 
 h1 {
@@ -11,7 +11,8 @@ h1 {
 
 ul {
     display: flex;
-    gap: var(--gap_large);
+    gap: var(--gap_medium);
+    flex-wrap: wrap;
 }
 
 ul li {
@@ -37,6 +38,7 @@ ul li {
     border-radius: var(--br-2);
     transition: 0.3s;
     width: 100%;
+    height: 600px;
     margin: auto;
 }
 
