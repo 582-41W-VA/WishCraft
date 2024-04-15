@@ -33,6 +33,22 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
+  // change tag color on selection
+
+  // Get all checkboxes
+  let checkboxes = document.querySelectorAll(".hidden_checkbox");
+
+  // Add event listener to each checkbox
+  checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+      if(this.checked) {
+        this.parentElement.classList.add('checked');
+      } else {
+        this.parentElement.classList.remove('checked');
+      }
+    });
+  });
+
   // Admin Panel
   // the delete user form to confirm the deletion
   const deleteUser = document.getElementById("deleteUser");

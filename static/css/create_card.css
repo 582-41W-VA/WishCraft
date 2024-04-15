@@ -72,8 +72,8 @@
     border-radius: var(--br-7);
 }
 
-.hidden_checkbox:checked+.styled_label {
-    background-color: #c0c0c0;
+.styled_label.checked {
+    background-color: var(--button_color_dark);
 }
 
 #createCardBtn {

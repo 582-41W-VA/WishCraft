@@ -52,7 +52,7 @@ h2 {
 }
 
 .hidden_checkbox:checked+.styled_label {
-    background-color: #c0c0c0;
+    background-color: var(--button_color_dark);
 }
 
 #clearTagsBtn {
@@ -91,8 +91,8 @@ select {
 .article_cards {
     display: grid;
     grid-template-columns: var(--grid_template_columns);
+    gap: var(--gap_medium);
 }
-
 .article_cards article {
     display: flex;
     flex-direction: column;
@@ -103,10 +103,8 @@ select {
     width: 100%;
     margin: auto;
 }
-
 .article_cards article img {
     height: 350px;
-    width: 100%;
     border-radius: var(--br-7);
     object-fit: cover;
 }

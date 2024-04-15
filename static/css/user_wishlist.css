@@ -1,3 +1,7 @@
+section {
+        margin-inline: var(--margin_medium);
+}
+
 h1 {
     text-align: center;
     font-size: var(--fs-h1);
@@ -7,10 +11,11 @@ h1 {
 
 ul {
     display: flex;
-    gap: 20px;
+    gap: var(--gap_large);
 }
 
-li {
+ul li {
+    font-size: var(--fs-milli);
     border: 2px solid var(--accent_color);
     border-radius: var(--br-7);
     padding: var(--padding_small) var(--padding_medium);
@@ -28,7 +33,7 @@ li {
     display: flex;
     flex-direction: column;
     gap: var(--gap_medium);
-    padding: var(--padding_medium);
+    padding: var(--padding_large);
     border-radius: var(--br-2);
     transition: 0.3s;
     width: 100%;
@@ -41,13 +46,8 @@ li {
 
 .article_cards article img {
     height: 350px;
-    width: 100%;
     border-radius: var(--br-7);
     object-fit: cover;
-}
-
-.article_cards article .container {
-    padding: 2px var(--padding_medium);
 }
 
 h2 {
