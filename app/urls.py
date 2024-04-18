@@ -10,10 +10,10 @@ urlpatterns = [
     path("card/<int:card_id>/", cards.card_detail, name="card_detail"),
     path("card/<int:card_id>/add_comment/", cards.add_comment, name="add_comment"),
     path(
-        "<int:card_id>/increment_likes/", cards.increment_likes, name="increment_likes"
+        "card/<int:card_id>/increment_likes/", cards.increment_likes, name="increment_likes"
     ),
     path(
-        "<int:card_id>/decrement_likes/", cards.decrement_likes, name="decrement_likes"
+        "card/<int:card_id>/decrement_likes/", cards.decrement_likes, name="decrement_likes"
     ),
     path("create_card/", cards.create_card, name="create_card"),
     path("your_wish_list/", cards.user_wishlist, name="user_wishlist"),

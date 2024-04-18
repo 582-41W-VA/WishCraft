@@ -60,6 +60,7 @@ def home(request):
     return render(request, "app/home.html", context)
 
 
+@login_required(login_url="/app/login/")
 def card_detail(request, card_id):
     """
     View for displaying the details of a card.
@@ -108,6 +109,7 @@ def add_comment(request, card_id):
         return redirect("card_detail", card_id=card_id)
 
 
+@login_required(login_url="/app/login/")
 def increment_likes(request, card_id):
     """
     View for incrementing the likes of a card.
@@ -132,6 +134,7 @@ def increment_likes(request, card_id):
     return redirect("card_detail", card_id=card_id)
 
 
+@login_required(login_url="/app/login/")
 def decrement_likes(request, card_id):
     """
     View for decrementing the likes of a card.
@@ -175,25 +178,25 @@ def create_card(request):
     context = {"tags": tags}
     if request.method != "POST":
         return render(request, "app/create-card.html", context)
-    else:
-        new_tag_name = request.POST.get("new_tag", "")
-        tag_ids = request.POST.getlist("tags")
-        tags = Tag.objects.filter(id__in=tag_ids)
 
-        if new_tag_name:
-            new_tag, _ = Tag.objects.get_or_create(name=new_tag_name)
-            tags = list(tags)
-            tags.append(new_tag)
+    new_tag_name = request.POST.get("new_tag", "")
+    tag_ids = request.POST.getlist("tags")
+    tags = Tag.objects.filter(id__in=tag_ids)
 
-        new_card = Card(
-            title=request.POST.get("title", ""),
-            image=request.FILES.get("image", ""),
-            user=request.user,
-        )
-        new_card.save()
-        new_card.tag.set(tags)
+    if new_tag_name:
+        new_tag, _ = Tag.objects.get_or_create(name=new_tag_name)
+        tags = list(tags)
+        tags.append(new_tag)
 
-        return redirect("user_wishlist")
+    new_card = Card(
+        title=request.POST.get("title", ""),
+        image=request.FILES.get("image", ""),
+        user=request.user,
+    )
+    new_card.save()
+    new_card.tag.set(tags)
+
+    return redirect("user_wishlist")
 
 
 @login_required(login_url="/app/login/")
@@ -222,6 +225,7 @@ def user_wishlist(request):
     return render(request, "app/user-wishlist.html", context)
 
 
+@login_required(login_url="/app/login/")
 def edit_card(request, card_id):
     """
     View for editing a card.
@@ -239,26 +243,27 @@ def edit_card(request, card_id):
     context = {"card": card, "tags": tags}
     if request.method != "POST":
         return render(request, "app/edit-card.html", context)
-    else:
-        new_tag_name = request.POST.get("new_tag", "")
-        tag_ids = request.POST.getlist("tags")
-        tags = Tag.objects.filter(id__in=tag_ids)
 
-        if new_tag_name:
-            new_tag, _ = Tag.objects.get_or_create(name=new_tag_name)
-            tags = list(tags)
-            tags.append(new_tag)
+    new_tag_name = request.POST.get("new_tag", "")
+    tag_ids = request.POST.getlist("tags")
+    tags = Tag.objects.filter(id__in=tag_ids)
 
-        card.title = request.POST.get("title", "")
-        image_file = request.FILES.get("image")
-        if image_file:
-            card.image = image_file
-        card.save()
-        card.tag.set(tags)
+    if new_tag_name:
+        new_tag, _ = Tag.objects.get_or_create(name=new_tag_name)
+        tags = list(tags)
+        tags.append(new_tag)
 
-        return redirect("user_wishlist")
+    card.title = request.POST.get("title", "")
+    image_file = request.FILES.get("image")
+    if image_file:
+        card.image = image_file
+    card.save()
+    card.tag.set(tags)
+
+    return redirect("user_wishlist")
 
 
+@login_required(login_url="/app/login/")
 def delete_card(request, card_id):
     """
     View for deleting a card.
