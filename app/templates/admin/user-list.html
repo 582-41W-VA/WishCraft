@@ -1,21 +1,24 @@
 {% extends "app/base.html" %}
 {% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin/user_list.css' %}">
+{% endblock %}
 {% block content %}
 	<h1>Admin panel</h1>
 	<h2>List of users</h2>
 
 	<div class="total-users">
 		<h3>Total number of users: {{ users.count }}</h3>
+		
+		<a href="{% url 'user_new' %}">Add a new user</a>
+		
+		{% for user in users %}
+		<article>
+			<ul>
+				<li><a href="{% url 'user_detail' user.pk %}">{{ user.pk }}  - {{ user.username }} - {{ user.email }}</a></li>
+			</ul>
+		</article>
+		
+		{% endfor %}
 	</div>
-
-	<a href="{% url 'user_new' %}">Add a new user</a>
-
-	{% for user in users %}
-	<article>
-		<ul>
-			<li><a href="{% url 'user_detail' user.pk %}">{{ user.pk }}  - {{ user.username }} - {{ user.email }}</a></li>
-		</ul>
-	</article>
-
-	{% endfor %}
 {% endblock %}

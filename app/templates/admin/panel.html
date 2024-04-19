@@ -1,19 +1,22 @@
 {% extends "app/base.html" %}
 {% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin/panel.css' %}">
+{% endblock %}
 {% block content %}
 	<h1>Admin panel</h1>
 
 	<article>
 		<div class="total-numbers">
 			<h3>Total users: {{ total_users }}</h3>
-			<h4>New users in the last day: {{ new_users_last_day }}</h4>
-			<h4>New users in the last week: {{ new_users_last_week }}</h4>
-			<h4>New users in the last month: {{ new_users_last_month }}</h4>
+			<p><span class="bold_text">New users in the last day:</span> {{ new_users_last_day }}</p>
+			<p><span class="bold_text">New users in the last week:</span> {{ new_users_last_week }}</p>
+			<p><span class="bold_text">New users in the last month:</span> {{ new_users_last_month }}</p>
 
 			<h3>Total cards: {{ total_cards }}</h3>
-			<h4>New cards in the last day: {{ new_cards_last_day }}</h4>
-			<h4>New cards in the last week: {{ new_cards_last_week }}</h4>
-			<h4>New cards in the last month: {{ new_cards_last_month }}</h4>
+			<p><span class="bold_text">New cards in the last day:</span> {{ new_cards_last_day }}</p>
+			<p><span class="bold_text">New cards in the last week:</span> {{ new_cards_last_week }}</p>
+			<p><span class="bold_text">New cards in the last month:</span> {{ new_cards_last_month }}</p>
 		</div>
 	</article>
 

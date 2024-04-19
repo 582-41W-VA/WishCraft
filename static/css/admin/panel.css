@@ -1,0 +1,44 @@
+body {
+    background: url(/static/images/noise_gradient_2.jpeg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+h3 {
+    color: #333;
+    line-height: 2.5;
+}
+
+article {
+    margin: 0 auto;
+    width: 80%;
+    max-width: 800px;
+}
+
+.total-numbers {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+p {
+    color: #666;
+    line-height: 2;
+}
+
+.bold_text {
+    font-weight: bold;
+}
+
+a {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: #0066cc;
+    text-decoration: none;
+}
