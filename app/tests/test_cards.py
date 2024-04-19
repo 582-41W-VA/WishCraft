@@ -1,3 +1,7 @@
+"""
+This module contains tests for the views in the cards module.
+"""
+
 from django.test import TestCase, Client
 from django.urls import reverse
 from app.models import Card, Tag, Comment, Like
@@ -8,8 +12,14 @@ from app.views.cards import get_filtered_cards
 
 
 class TestCards(TestCase):
+    """
+    Test cases for the views in the cards module.
+    """
 
     def setUp(self):
+        """
+        Set up the test environment by creating a test user, tags, card, and comment.
+        """
         self.client = Client()
         self.user = User.objects.create_user(username="testuser", password="password")
         self.client.login(username="testuser", password="password")
@@ -30,6 +40,10 @@ class TestCards(TestCase):
         )
 
     def test_get_filtered_cards(self):
+        """
+        Test the get_filtered_cards function with a specific set of filters.
+        Checks if the function correctly filters cards based on tags, search query, and sorting order.
+        """
         response = self.client.get(
             "", {"tags": [self.tag1.id], "search": "Card", "sort": "latest"}
         )
@@ -38,6 +52,10 @@ class TestCards(TestCase):
         self.assertEqual(filtered_cards.first(), self.card)
 
     def test_home_view(self):
+        """
+        Test the home view.
+        Checks if the home page is rendered correctly and if the necessary context variables are present.
+        """
         response = self.client.get(reverse("home"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "app/home.html")
@@ -62,6 +80,10 @@ class TestCards(TestCase):
         self.assertTrue(response.context["has_liked"])
 
     def test_add_comment_view(self):
+        """
+        Test the add comment view.
+        Checks if a new comment can be successfully added to a card.
+        """
         initial_comment_count = Comment.objects.count()
         response = self.client.post(
             reverse("add_comment", args=[self.card.id]), {"content": "New Comment"}
@@ -74,6 +96,10 @@ class TestCards(TestCase):
         self.assertEqual(new_comment.card, self.card)
 
     def test_increment_likes_view(self):
+        """
+        Test the increment likes view.
+        Checks if the likes of a card are incremented by 1 when the increment_likes view is accessed.
+        """
         initial_likes = self.card.likes
         response = self.client.get(reverse("increment_likes", args=[self.card.id]))
         updated_card = Card.objects.get(id=self.card.id)
@@ -81,6 +107,10 @@ class TestCards(TestCase):
         self.assertEqual(updated_card.likes, initial_likes + 1)
 
     def test_decrement_likes_view(self):
+        """
+        Test the decrement likes view.
+        Checks if the likes of a card are decremented by 1 when the decrement_likes view is accessed.
+        """
         Like.objects.create(user=self.user, card=self.card)
         initial_likes = self.card.likes
         response = self.client.get(reverse("decrement_likes", args=[self.card.id]))
@@ -89,13 +119,24 @@ class TestCards(TestCase):
         self.assertEqual(updated_card.likes, initial_likes - 1)
 
     def test_create_card_view(self):
+        """
+        Test the create card view.
+        Checks if a new card is created successfully when the create_card view is accessed with valid data.
+        """
         initial_card_count = Card.objects.count()
+
+        with open(
+            "media/images/custom-nike-dunk-high-by-you-shoes_aX1ryzF.png", "rb"
+        ) as f:
+            image_data = f.read()
+        image_file = BytesIO(image_data)
+        image_file.name = "new_image.png"
 
         response = self.client.post(
             reverse("create_card"),
             {
                 "title": "New Card",
-                "image": "test_image.webp",
+                "image": "new_image.png",
                 "tags": [self.tag1.id, self.tag2.id],
             },
         )
@@ -109,6 +150,10 @@ class TestCards(TestCase):
         self.assertIn(self.tag2, new_card.tag.all())
 
     def test_user_wishlist_view(self):
+        """
+        Test the user wishlist view.
+        Checks if the user's wishlist is displayed correctly with the expected cards when the user_wishlist view is accessed.
+        """
         response = self.client.get(reverse("user_wishlist"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "app/user-wishlist.html")
@@ -118,11 +163,22 @@ class TestCards(TestCase):
         self.assertEqual(list(response.context["searched_cards"]), [self.card])
 
     def test_edit_card_view(self):
+        """
+        Test the edit card view.
+        Checks if the card is successfully updated with the new title, image and tag when the edit_card view is accessed.
+        """
+        with open(
+            "media/images/custom-nike-dunk-high-by-you-shoes_aX1ryzF.png", "rb"
+        ) as f:
+            image_data = f.read()
+        image_file = BytesIO(image_data)
+        image_file.name = "new_image.png"
+
         response = self.client.post(
             reverse("edit_card", args=[self.card.id]),
             {
                 "title": "Updated Title",
-                "image": "test_image.webp",
+                "image": "new_image.png",
                 "tags": [self.tag1.id],
             },
         )
@@ -133,6 +189,10 @@ class TestCards(TestCase):
         self.assertNotIn(self.tag2, updated_card.tag.all())
 
     def test_delete_card_view(self):
+        """
+        Test the delete card view.
+        Checks if the card is successfully deleted when the delete_card view is accessed.
+        """
         initial_card_count = Card.objects.count()
         response = self.client.post(reverse("delete_card", args=[self.card.id]))
         self.assertEqual(response.status_code, 302)
