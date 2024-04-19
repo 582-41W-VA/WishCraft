@@ -5,6 +5,7 @@
 li {
   list-style-type: none;
 }
+
 /* Card Section */
 .card-detail {
   display: flex;
@@ -57,14 +58,14 @@ li {
 .tag-list {
   margin: 0;
   padding-inline: 0;
-  text-transform: uppercase;
-  color: var(--para_color_dark);
+  color: var(--para_color_light);
 }
 
 .tag-list li {
-  padding: 0.5rem;
-  background: var(--bg_color_dark);
-  border-radius: 0.5rem;
+  font-size: var(--fs-milli);
+  border: 2px solid var(--accent_color);
+  border-radius: var(--br-7);
+  padding: var(--padding_small) var(--padding_medium);
 }
 
 .scroller {
@@ -75,7 +76,7 @@ li {
   overflow: hidden;
   -webkit-mask:
     linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
-    mask:
+  mask:
     linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
 }
 
@@ -85,19 +86,19 @@ li {
   animation: scroll var(--_animation-duration, 40s) var(--_animation_direction, forwards) linear infinite;
 }
 
-.scroller[data-direction="right"]{
+.scroller[data-direction="right"] {
   --_animation-direction: reverse;
 }
 
-.scroller[data-direction="left"]{
+.scroller[data-direction="left"] {
   --_animation-direction: forwards;
 }
 
-.scroller[data-speed="slow"]{
+.scroller[data-speed="slow"] {
   --_animation-duration: 120s;
 }
 
-.scroller[data-speed="fast"]{
+.scroller[data-speed="fast"] {
   --_animation-duration: 30s;
 }
 
@@ -238,7 +239,7 @@ li {
   .card-detail {
     flex-direction: column;
   }
-  
+
   .leftdetails,
   .rightdetails {
     width: 100%;

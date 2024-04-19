@@ -1,11 +1,14 @@
 {% extends "app/base.html" %}
 {% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin/user_edit.css' %}">
+{% endblock %}
 {% block content %}
 	<h1>Admin panel</h1>
 
 	<h2>{% if form.instance.pk %}Edit User{% else %}New User{% endif %}</h2>
 
-	<form method="post">
+	<form class="new_user" method="post">
 		{% csrf_token %}
 		{{ form.as_p }}
 		<button type="submit">Save</button>

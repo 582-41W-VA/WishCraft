@@ -7,7 +7,8 @@ section {
 
 ul {
     display: flex;
-    gap: var(--gap_large);
+    gap: var(--gap_medium);
+    flex-wrap: wrap;
 }
 
 ul li {
@@ -52,7 +53,7 @@ h2 {
 }
 
 .hidden_checkbox:checked+.styled_label {
-    background-color: #c0c0c0;
+    background-color: var(--button_color_dark);
 }
 
 #clearTagsBtn {
@@ -91,6 +92,7 @@ select {
 .article_cards {
     display: grid;
     grid-template-columns: var(--grid_template_columns);
+    gap: var(--gap_medium);
 }
 
 .article_cards article {
@@ -101,12 +103,12 @@ select {
     border-radius: var(--br-2);
     transition: 0.3s;
     width: 100%;
+    height: 600px;
     margin: auto;
 }
 
 .article_cards article img {
     height: 350px;
-    width: 100%;
     border-radius: var(--br-7);
     object-fit: cover;
 }

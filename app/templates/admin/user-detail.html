@@ -1,42 +1,53 @@
 {% extends "app/base.html" %}
 {% load static %}
 {% block js %}
-	<script defer src="{% static 'js/script.js' %}"></script>
+<script defer src="{% static 'js/script.js' %}"></script>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin/user_detail.css' %}">
 {% endblock %}
 {% block content %}
-	<h1>Admin panel</h1>
-	<h2>User detail</h2>
+<h1>Admin panel</h1>
+<h2>User detail</h2>
 
+<section class="user_edit">
 	<a href="{% url 'user_list' %}">Go back to the list</a>
 
 	<h3>Username: {{ user.username }}</h3>
-	
+
 	<h3>Email: {{ user.email }}</h3>
+</section>
 
-	<form id="deleteUser" method="post" action="{% url 'user_delete' pk=user.pk %}">
-		{% csrf_token %}	
-		<a href="{% url 'user_edit' pk=user.pk %}">Edit</a>
-		<input type="submit" value="Delete">
-	</form>
+<form id="deleteUser" method="post" action="{% url 'user_delete' pk=user.pk %}">
+	{% csrf_token %}
+	<a href="{% url 'user_edit' pk=user.pk %}">Edit</a>
+	<input type="submit" value="Delete">
+</form>
 
-	<h2>User Cards</h2>
+<h2>User Cards</h2>
 
-	<div class="total-cards">
-		<h3>Total number of cards: {{ cards.count }}</h3>
-	</div>
-
+<div class="total-cards">
+	<h3>Total number of cards: {{ cards.count }}</h3>
+</div>
+<section class="article_cards">
 	{% for card in cards %}
 	<article>
 		<h4>{{ card.title}}</h4>
 
 		{% if card.image %}
-        <img src="{{ card.image.url }}" alt="{{ card.title }}" width="100px" />
+		<img src="{{ card.image.url }}" alt="{{ card.title }}" />
 		{% endif %}
 
-		<p>{{ card.likes }} likes</p>
-
-		<ul>Tags: 
-			{% for tag in card.tag.all %} 
+		<div class="user_container">
+			<p>{{ card.likes }} likes</p>
+			<div class="user_likes">
+				<i class="fa-solid fa-heart"></i>
+				<span>{{ selected_card.likes }}</span>
+			</div>
+		</div>
+		<ul>
+			{% for tag in card.tag.all %}
 			<li>{{ tag.name }}</li>
 			{% endfor %}
 		</ul>
@@ -45,10 +56,11 @@
 
 		<form class="deleteCard" method="post" action="{% url 'card_delete' pk=card.pk %}">
 			{% csrf_token %}
-			<a href="{% url 'card_edit' pk=card.pk %}">Edit</a>
-			<input type="submit" value="Delete">
+			<a class="editbtn" href="{% url 'card_edit' pk=card.pk %}">Edit</a>
+			<input class="deletebtn" type="submit" value="Delete">
 		</form>
 	</article>
 
 	{% endfor %}
+</section>
 {% endblock %}

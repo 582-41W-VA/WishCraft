@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Home Page
   // the sort form to submit the form when the value changes
   const sortForm = document.getElementById("sortForm");
@@ -33,6 +33,22 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
+  // change tag color on selection
+
+  // Get all checkboxes
+  let checkboxes = document.querySelectorAll(".hidden_checkbox");
+
+  // Add event listener to each checkbox
+  checkboxes.forEach(function (checkbox) {
+    checkbox.addEventListener("change", function () {
+      if (this.checked) {
+        this.parentElement.classList.add("checked");
+      } else {
+        this.parentElement.classList.remove("checked");
+      }
+    });
+  });
+
   // Admin Panel
   // the delete user form to confirm the deletion
   const deleteUser = document.getElementById("deleteUser");
@@ -65,14 +81,37 @@ document.addEventListener("DOMContentLoaded", function() {
   // mobile menu
   const logo = document.getElementById("logo");
   const nav = document.querySelector("nav");
+  const body = document.querySelector("body");
 
-  logo.addEventListener("click", function () {
+  logo.addEventListener("click", function (event) {
+    event.stopPropagation();
     nav.classList.toggle("active");
   });
 
-  console.log("script.js loaded");
+  body.addEventListener("click", function () {
+    nav.classList.remove("active");
+  });
+
+  //hide label and add placeholder on focus
+
+  const form = document.querySelector(".new_user");
+  const inputs = form.querySelectorAll("input, textarea, select");
+
+  inputs.forEach((input) => {
+
+    const label = form.querySelector(`label[for="${input.id}"]`);
+    if (label) {
+      label.style.position = "absolute";
+      label.style.width = "1px";
+      label.style.height = "1px";
+      label.style.padding = "0";
+      label.style.margin = "-1px";
+      label.style.overflow = "hidden";
+      label.style.clip = "rect(0,0,0,0)";
+      label.style.whiteSpace = "nowrap";
+      label.style.border = "0";
+
+      input.setAttribute("placeholder", label.innerText);
+    }
+  });
 });
-
-
-
-
