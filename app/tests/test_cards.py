@@ -65,6 +65,10 @@ class TestCards(TestCase):
         self.assertIn("sort_by", response.context)
 
     def test_card_detail_view(self):
+        """
+        Test the card detail view.
+        Checks if the card detail page is rendered correctly and if the necessary context variables are present.
+        """
         Like.objects.create(user=self.user, card=self.card)
         response = self.client.get(reverse("card_detail", args=[self.card.id]))
         self.assertEqual(response.status_code, 200)
