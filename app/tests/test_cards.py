@@ -144,7 +144,6 @@ class TestCards(TestCase):
                 "tags": [self.tag1.id, self.tag2.id],
             },
         )
-
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Card.objects.count(), initial_card_count + 1)
         new_card = Card.objects.last()
