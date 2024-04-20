@@ -1,9 +1,12 @@
 {% extends "app/base.html" %}
 {% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/edit_card.css' %}">
+{% endblock %}
 {% block content %}
 <h1>Edit Card</h1>
 
-<form method="POST" enctype="multipart/form-data">
+<form class="edit_card" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <label for="title">
         Title:
@@ -12,17 +15,19 @@
     <label for="current_image">Current Image:
         <img src="{{ card.image.url }}" alt="Current Image" width="150px">
     </label>
-    <label for="image">
-        New Image:
-        <input id="image" type="file" name="image">
-    </label>
+        <div class="file_uploader">
+            <label for="image">
+                New Image:
+                <input id="image" type="file" name="image" required>
+            </label>
+        </div>
     <label for="tagInput">
         Tag:
-        <input id="tagInput" type="text" name="new_tag">
+        <input id="tagInput" type="text" name="new_tag" placeholder="tag">
     </label>
     {% for tag in tags %}
-        <label for="tagSelect{{ tag.id }}">
-            <input id="tagSelect{{ tag.id }}" type="checkbox" name="tags" value="{{ tag.id }}" {% if tag in card.tag.all %}checked{% endif %}>{{ tag.name }}
+        <label class="styled_label" for="tagSelect{{ tag.id }}">
+            <input class="hidden_checkbox" id="tagSelect{{ tag.id }}" type="checkbox" name="tags" value="{{ tag.id }}" {% if tag in card.tag.all %}checked{% endif %}>{{ tag.name }}
         </label>
     {% endfor %}
     <button type="submit">Save</button>
