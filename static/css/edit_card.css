@@ -1,0 +1,85 @@
+#search-form {
+    display: none;
+}
+
+h1 {
+    text-align: center;
+    font-size: var(--fs-h1);
+    font-family: 'Sansita', sans-serif;
+}
+
+.edit_card {
+    margin: 0 auto;
+    width: 80%;
+    max-width: 800px;
+    background-color: var(--bg_color_dark);
+    color: var(--para_color_dark);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.edit_card button {
+    background-color: #0066cc;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.hidden_checkbox {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.styled_label {
+    display: inline-block;
+    padding: var(--padding_small) var(--padding_medium);
+    margin: 5px;
+    background: var(--button_color_light);
+    color: var(--para_color_dark);
+    cursor: pointer;
+    border-radius: var(--br-7);
+}
+
+.hidden_checkbox:checked+.styled_label {
+    background-color: var(--button_color_dark);
+}
+
+
+.file_uploader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: var(--br);
+    margin: var(--margin_medium);
+}
+
+.file_uploader #image {
+    display: none;
+}
+
+.file_uploader label[for="image"] {
+    padding: var(--padding_medium) var(--padding_large);
+    text-align: center;
+    font-weight: 600;
+    color: var(--para_color_dark);
+    background-color: var(--button_color_dark);
+    box-shadow: 1px 0 10px rgba(0, 0, 0, .15);
+    border-radius: var(--br);
+    cursor: pointer;
+}
